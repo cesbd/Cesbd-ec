@@ -2,7 +2,10 @@
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
-		extend: {},
-	},
-	plugins: [],
+    extend: {
+      clipPath: {
+        custom: 'polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)',
+      },
+    },
+  },
 }

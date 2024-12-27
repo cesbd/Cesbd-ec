@@ -1,14 +1,27 @@
+---
+import Navbar from "../ui/Navbar.astro";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="stylesheet" href="/src/index.css" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
 	</head>
 	<body>
-		<slot />
+
+		<!-- <Navbar /> -->
+		
+		<main>
+			<slot />
+		</main>
+
+
+		
 	</body>
 </html>
 

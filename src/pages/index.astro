@@ -1,11 +1,65 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../ui/Navbar.astro";
 ---
 
 <Layout>
-	<Welcome />
+	<section
+		class="flex flex-col items-center justify-center text-center w-full relative"
+	>
+		<div class="top-0 left-0 absolute w-full h-[calc(100vh-380px)]">
+			<Navbar />
+		</div>
+
+		<div class="flex flex-col items-center justify-center w-full">
+			<video
+				src="/vids/video.mp4"
+				autoplay
+				loop
+				muted
+				class="object-cover min-h-dvh w-full object-center"></video>
+
+			<div
+				class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+			>
+			</div>
+
+			<div
+				class="absolute -bottom-20 left-0 right-0 z-10 bg-amber-300 max-w-fit rounded-md px-8 py-4 text-center mx-auto flex flex-col items-center justify-center gap-2 shadow-md"
+			>
+				<p class="font-semibold mt-4">Hechos para durar</p>
+				<h1 class="font-bold text-4xl">Acerca de Nosotros</h1>
+				<p class="text-lg text-nowrap">
+					Dedicados a hacer herramientas grandes – y hacer un mejor mundo.
+				</p>
+
+				<div
+					class="flex items-center justify-center gap-4 mt-8 [&>div]:w-[200px] [&>div]:h-[200px] [&>div]:bg-white [&>div]:shadow-lg [&>div]:rounded-md"
+				>
+					<div class=""></div>
+					<div class=""></div>
+					<div class=""></div>
+					<div class=""></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container mx-auto mt-28">
+		<section class="text-lg">
+			Desde su fundación, Black & Decker ha revolucionado el mundo de las
+			herramientas eléctricas y los productos de hogar. Su misión se centra en
+			brindar soluciones innovadoras y accesibles para tareas diarias,
+			empoderando tanto a profesionales como a usuarios ocasionales. Hoy en día,
+			la marca es sinónimo de practicidad, confiabilidad y diseño funcional.
+		</section>
+
+		<section class="pb-[30rem] mt-10">
+			<h2 class="font-semibold text-3xl">
+				¿Por qué elegir <span class="text-amber-400">Black & Decker</span>?
+			</h2>
+		</section>
+	</div>
+
+	<div id="observe-me" class="h-10 w-10 bg-amber-500"></div>
 </Layout>
