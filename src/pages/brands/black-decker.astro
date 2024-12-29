@@ -1,0 +1,63 @@
+---
+import BrandPage from "@/components/brands/BrandPage.astro";
+
+const blackDecker = {
+	title: "Black & Decker",
+	subtitle: "Innovación y Accesibilidad al Alcance de Todos",
+	introduction: "Desde su fundación, Black & Decker ha revolucionado el mundo de las herramientas eléctricas y los productos de hogar. Su misión se centra en brindar soluciones innovadoras y accesibles para tareas diarias, empoderando tanto a profesionales como a usuarios ocasionales. Hoy en día, la marca es sinónimo de practicidad, confiabilidad y diseño funcional.",
+	cards: [
+		{
+			title: "Versatilidad",
+			description: "Productos diseñados para todo tipo de usuario, desde el bricolaje hasta proyectos más complejos.",
+		},
+		{
+			title: "Innovación Sostenible",
+			description: "Soluciones que combinan eficiencia energética y diseño amigable con el medio ambiente.",
+		},
+		{
+			title: "Accesibilidad",
+			description: "Herramientas confiables y económicas sin comprometer la calidad",
+		},
+		{
+			title: "Compromiso con el Usuario",
+			description: "Una marca que evoluciona escuchando las necesidades de sus clientes.",
+		},
+	],
+	timeline: [
+		{
+			title: "1910",
+			description: "Duncan Black y Alonzo Decker fundan Black & Decker Manufacturing Company en Baltimore, Maryland.",
+		},
+		{
+			title: "1917",
+			description: "Patente del primer taladro eléctrico portátil con interruptor de gatillo, que redefine el mercado.",
+		},
+		{
+			title: "1946",
+			description: "Introducción de herramientas eléctricas para el consumidor, llevando tecnología profesional a los hogares.",
+		},
+		{
+			title: "1984",
+			description: "Adquisición de General Electric Home Appliances, ampliando su portafolio hacia electrodomésticos.",
+		},
+		{
+			title: "2010",
+			description: "Fusión con Stanley, creando Stanley Black & Decker, un gigante global en herramientas.",
+		},
+		{
+			title: "Actualidad",
+			description: "Black & Decker lidera con productos sostenibles como su línea de herramientas eléctricas con baterías intercambiables y electrodomésticos ecoeficientes.",
+		},
+	],
+}
+
+---
+
+<BrandPage 
+	title={blackDecker.title}
+	subtitle={blackDecker.subtitle}
+	introduction={blackDecker.introduction}
+	cards={blackDecker.cards}
+	timeline={blackDecker.timeline}
+/>
+

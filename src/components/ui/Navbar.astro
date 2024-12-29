@@ -1,0 +1,100 @@
+---
+const { title, subtitle } = Astro.props;
+---
+
+<header
+  id="landing-header"
+  class="flex items-center py-4 px-8 bg-transparent sticky z-10 xl:flex-row flex-col top-0 left-0 pt-10"
+>
+  <div class="bg-amber-300 p-4 polygon px-10 2xl:px-20">
+    <a
+      href="#"
+      class="text-xs md:text-xl font-semibold text-black lg:ml-14 2xl:ml-16 inline-block lg:text-start text-nowrap"
+    >
+      <span
+        class="font-bold text-xl md:text-3xl inline-block lg:-ml-14 2xl:-ml-20"
+        >{title}</span
+      >
+      <br />{subtitle}
+    </a>
+  </div>
+
+  <div transition:persist="transform duration-300 ease-in-out">
+    <nav>
+      <ul
+        class="md:flex [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:font-semibold [&>li>a]:text-white [&>li>a]:text-lg"
+      >
+        <li>
+          <a class="hover:text-black hover:transition-colors" href="/"
+            >Inicio</a>
+        </li>
+        <li>
+          <a class="hover:text-black hover:transition-colors" href="/marcas"
+            >Marcas</a>
+        </li>
+        <li>
+          <a class="hover:text-black hover:transition-colors" href="/eventos"
+            >Eventos</a>
+        </li>
+        <li>
+          <a
+            class="hover:text-black hover:transition-colors"
+            href="/promociones">Promociones</a>
+        </li>
+        <li>
+          <a
+            class="hover:text-black hover:transition-colors"
+            href="/capacitaciones">Capacitaciones</a>
+        </li>
+        <li>
+          <a class="hover:text-black hover:transition-colors" href="contacto"
+            >Contacto</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div
+      id="menu-backdrop"
+      class={`
+          absolute left-0 top-0 
+          bg-amber-200 backdrop:blur-lg rounded
+          translate-x-[var(--menuLeft)] translate-y-[var(--menuTop)]
+          w-[var(--menuWidth)] h-[var(--menuHeight)]
+          transition-all duration-300 ease-in-out opacity-0 -z-10
+        `}
+    >
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    init();
+  });
+
+  function init() {
+    const menuBackdrop = document.getElementById(
+      "menu-backdrop",
+    ) as HTMLElement;
+    const listItems = document.querySelectorAll(
+      "#landing-header li",
+    ) as NodeListOf<HTMLElement>;
+
+    listItems.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const { left, top, width, height } = item.getBoundingClientRect();
+        menuBackdrop.style.setProperty("--menuLeft", `${left}px`);
+        menuBackdrop.style.setProperty("--menuTop", `${top}px`);
+        menuBackdrop.style.setProperty("--menuWidth", `${width}px`);
+        menuBackdrop.style.setProperty("--menuHeight", `${height}px`);
+        menuBackdrop.style.opacity = "1";
+        menuBackdrop.style.visibility = "visible";
+      });
+
+      item.addEventListener("mouseleave", (e) => {
+        menuBackdrop.style.opacity = "0";
+        menuBackdrop.style.visibility = "hidden";
+      });
+    });
+  }
+</script>

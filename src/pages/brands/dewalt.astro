@@ -1,0 +1,71 @@
+---
+import BrandPage from "@/components/brands/BrandPage.astro";
+
+const dewalt = {
+  title: "DeWalt",
+  subtitle: "Poder y Precisión para los Profesionales",
+  introduction: `DeWalt es una marca reconocida por ofrecer herramientas de alto rendimiento diseñadas para los profesionales más exigentes. Con un enfoque en potencia, durabilidad y precisión, DeWalt garantiza superar las expectativas en cada proyecto, incluso en los entornos más desafiantes.`,
+  cards: [
+    {
+      title: "Rendimiento Profesional",
+      description:
+        "Diseñado para trabajos de alta exigencia en construcción e industria",
+    },
+    {
+      title: "Tecnología Avanzada",
+      description:
+        "Innovaciones como Tool Connect™ y FlexVolt™",
+    },
+    {
+      title: "Durabilidad Extrema",
+      description:
+        "Materiales resistentes y pruebas rigurosas",
+    },
+    {
+      title: "Sostenibilidad",
+      description:
+        "Compromiso con reducir la huella de carbono mediante productos ecoeficientes",
+    },
+  ],
+  timeline: [
+    {
+      title: "1924",
+      description:
+        "Raymond DeWalt inventa la primera sierra radial, marcando el inicio de la marca en Leola, Pensilvania.",
+    },
+    {
+      title: "1941",
+      description:
+        "DeWalt produce maquinaria para apoyar el esfuerzo de la Segunda Guerra Mundial, consolidando su reputación.",
+    },
+    {
+      title: "1992",
+      description:
+        "Introducción de la línea de herramientas eléctricas portátiles, redefiniendo la movilidad en la construcción.",
+    },
+    {
+      title: "2010",
+      description:
+        "Lanzamiento del sistema de baterías 20V MAX, que lidera la innovación en energía inalámbrica.",
+    },
+    {
+      title: "2013",
+      description:
+        "Expansión a herramientas conectadas con la línea Tool Connect™, incorporando tecnología IoT.",
+    },
+    {
+      title: "Actualidad",
+      description:
+        "Enfocados en sostenibilidad, con herramientas eléctricas que reducen el impacto ambiental y aumentan la eficiencia.",
+    },
+  ],
+};
+---
+
+<BrandPage
+  title={dewalt.title}
+  subtitle={dewalt.subtitle}
+  introduction={dewalt.introduction}
+  cards={dewalt.cards}
+  timeline={dewalt.timeline}
+/>

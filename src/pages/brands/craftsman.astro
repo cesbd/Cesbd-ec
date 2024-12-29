@@ -1,0 +1,70 @@
+---
+import BrandPage from "@/components/brands/BrandPage.astro";
+
+const dewalt = {
+  title: "Craftsman",
+  subtitle: "Confiabilidad y Tradición Americana",
+  introduction: `Desde hace más de 90 años, Craftsman ha sido el símbolo de herramientas confiables para talleres y hogares. La marca combina calidad artesanal con innovación para brindar soluciones robustas a quienes construyen, reparan y crean.`,
+  cards: [
+    {
+      title: "Calidad Garantizada",
+      description:
+        "Respaldo con garantías excepcionales",
+    },
+    {
+      title: "Diseño Tradicional y Moderno",
+      description:
+        "Herramientas clásicas con avances tecnológicos",
+    },
+    {
+      title: "Accesibilidad",
+      description:
+        "Productos confiables a precios competitivos",
+    },
+    {
+      title: "Compromiso Comunitario",
+      description:
+        "Enfocados en apoyar a los usuarios locales con productos duraderos",
+    },
+  ],
+  timeline: [
+    {
+      title: "1927",
+      description: `Introducción de la marca bajo Sears, ofreciendo herramientas manuales de alta calidad.`,
+    },
+    {
+      title: "1945",
+      description:
+        "Craftsman suministra herramientas a las fuerzas armadas durante la Segunda GuerraMundial.",
+    },
+    {
+      title: "1970",
+      description:
+        "Reconocimiento por sus productos de por vida, introduciendo garantías pioneras en el mercado.",
+    },
+    {
+      title: "2017",
+      description:
+        "Adquisición por Stanley Black & Decker, revitalizando la marca con nuevas líneas de productos.",
+    },
+    {
+      title: "2020",
+      description:
+        "Expansión con herramientas motorizadas y soluciones de almacenamiento.",
+    },
+    {
+      title: "Actualidad",
+      description:
+        "Craftsman lidera con herramientas conectadas y productos ergonómicos para los profesionales de hoy.",
+    },
+  ],
+};
+---
+
+<BrandPage
+  title={dewalt.title}
+  subtitle={dewalt.subtitle}
+  introduction={dewalt.introduction}
+  cards={dewalt.cards}
+  timeline={dewalt.timeline}
+/>

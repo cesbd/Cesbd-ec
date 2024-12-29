@@ -1,5 +1,6 @@
 ---
-import Navbar from "../ui/Navbar.astro";
+import '@/styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 ---
 
 <!doctype html>
@@ -8,20 +9,23 @@ import Navbar from "../ui/Navbar.astro";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="stylesheet" href="/src/index.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
+		<ClientRouter />
 	</head>
 	<body>
-
 		<!-- <Navbar /> -->
-		
+		<slot name="navbar" />
+
 		<main>
 			<slot />
 		</main>
 
-
-		
+		<!-- <ContacForm /> -->
 	</body>
 </html>
 

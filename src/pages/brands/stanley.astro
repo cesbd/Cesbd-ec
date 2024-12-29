@@ -1,0 +1,74 @@
+---
+import BrandPage from "@/components/brands/BrandPage.astro";
+
+const dewalt = {
+  title: "STANLEY",
+  subtitle: "Más de un Siglo de Confiabilidad y Precisión",
+  introduction: `Desde 1843, Stanley se ha destacado como un ícono mundial en herramientas manuales y de
+  medición. Reconocida por su constante innovación y compromiso con la calidad, Stanley diseña
+  productos que cumplen con los estándares más altos, siendo esenciales tanto en proyectos
+  domésticos como en las construcciones más exigentes. Su objetivo siempre ha sido proporcionar
+  herramientas confiables que permitan a los profesionales transformar ideas en realidades.`,
+  cards: [
+    {
+      title: "Calidad Imbatible",
+      description:
+        " Cada herramienta está diseñada para resistir el uso intensivo y ofrecer resultados precisos",
+    },
+    {
+      title: "Variedad Extensa",
+      description:
+        "Desde herramientas manuales hasta soluciones digitales avanzadas, Stanley tiene lo que necesitas para cualquier proyecto",
+    },
+    {
+      title: "Innovación Constante",
+      description:
+        "Su legado de innovación incluye productos icónicos como PowerLock® y FatMax®",
+    },
+    {
+      title: "Sostenibilidad",
+      description:
+        "Un firme compromiso con el medio ambiente, liderando iniciativas para reducir su huella de carbono",
+    },
+  ],
+  timeline: [
+    {
+      title: "1843",
+      description: `Frederick T. Stanley funda "The Stanley Works" en New Britain, Connecticut, con un enfoque en la producción de herrajes y cerraduras de alta calidad.`,
+    },
+    {
+      title: "1931",
+      description:
+        "Introducción del destornillador de punta redondeada, una innovación diseñada para mayor durabilidad y comodidad.",
+    },
+    {
+      title: "1963",
+      description:
+        " Creación de la cinta métrica PowerLock®, un producto que se convirtió en un ícono global, revolucionando la medición portátil.",
+    },
+    {
+      title: "1992",
+      description:
+        "Stanley presenta su línea FatMax®, conocida por herramientas más resistentes, ergonómicas y de alto rendimiento.",
+    },
+    {
+      title: "2010",
+      description:
+        " Stanley se fusiona con Black & Decker, formando Stanley Black & Decker, una de las empresas más grandes del sector de herramientas.",
+    },
+    {
+      title: "Actualidad",
+      description:
+        "La marca continúa liderando la industria con herramientas innovadoras, sostenibles y digitales, comprometida con ser carbono positivo para 2030.",
+    },
+  ],
+};
+---
+
+<BrandPage
+  title={dewalt.title}
+  subtitle={dewalt.subtitle}
+  introduction={dewalt.introduction}
+  cards={dewalt.cards}
+  timeline={dewalt.timeline}
+/>

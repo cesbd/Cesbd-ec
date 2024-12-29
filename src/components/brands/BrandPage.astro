@@ -1,0 +1,132 @@
+---
+import Navbar from "@/components/ui/Navbar.astro";
+import Layout from "../../layouts/Layout.astro";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  introduction: string;
+  cards: Card[];
+  timeline: Timeline[];
+}
+
+interface Card {
+  title: string;
+  description: string;
+}
+
+interface Timeline {
+  title: string;
+  description: string;
+}
+
+const { title, subtitle, introduction, cards, timeline } = Astro.props;
+---
+
+<Layout>
+  <section
+    class="flex flex-col items-center justify-center text-center w-full relative"
+  >
+    <!-- NAVBAR FROM CHILD -->
+    <div slot="navbar" class="top-0 left-0 absolute w-full h-[10vh]">
+      <Navbar title={title} subtitle={subtitle} />
+    </div>
+
+    <div class="flex flex-col items-center justify-center w-full">
+      <video
+        transition:persist
+        src="/vids/video.mp4"
+        autoplay
+        loop
+        muted
+        class="object-cover max-h-[20vh] w-full object-center"></video>
+
+      <div
+        class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+      >
+      </div>
+    </div>
+  </section>
+
+  <div class="container mx-auto mt-28 px-4 pb-[10rem]">
+    <section class="text-lg">
+      {introduction}
+    </section>
+
+    <section class="mt-10 scroll-container">
+      <h2 class="font-semibold text-3xl">
+        ¿Por qué elegir <span class="text-amber-400">{title}</span>?
+      </h2>
+
+      <div id="fade-in-up-observer"></div>
+
+      <div
+        data-why="black-decker"
+        class="mt-4 [&>div>h3]:my-2 [&>div>h3]:text-xl [&>div>h3]:font-bold [&>div>p]:text-gray-500 [&>div>p]:text-center [&>div>h3]:text-center grid grid-cols-[repeat(auto-fit,minmax(340px,1fr))] gap-4"
+      >
+        {
+          cards.map((card, index) => (
+            <div
+              class={`rounded-md p-4 flex flex-col items-center justify-center shadow-lg flex-1 animate__delay-${index + 1}s animate__animated animate__faster`}
+            >
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- HISTORIA -->
+    <section class="mt-12">
+      <h2 class="font-semibold text-3xl text-end">
+        <span class="text-amber-400">Historia:</span> Un Legado de Excelencia
+      </h2>
+      {
+        timeline.map((timeline, index) => (
+          <div class="p-4 border-l-4 border-l-amber-500 rounded-md gap-2 shadow-md mt-4 text-lg px-8">
+            <p class="text-2xl font-bold">{timeline.title}</p>
+            <p>{timeline.description}</p>
+          </div>
+        ))
+      }
+    </section>
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    init();
+  });
+
+  function init() {
+    const $whyBlackDecker = document.querySelector(
+      "[data-why='black-decker']",
+    ) as HTMLDivElement;
+    const children =
+      $whyBlackDecker.children as HTMLCollectionOf<HTMLDivElement>;
+    const $fadeInUpObserver = document.querySelector(
+      "#fade-in-up-observer",
+    ) as HTMLDivElement;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(({ isIntersecting }) => {
+        console.log({ isIntersecting });
+
+        if (isIntersecting) {
+          for (const child of children) {
+            child.classList.add("animate__fadeInUp");
+          }
+        }
+      });
+    });
+
+    observer.observe($fadeInUpObserver);
+  }
+</script>
+
+<style>
+  :root {
+    --animate-delay: 0.3s;
+  }
+</style>

@@ -1,0 +1,72 @@
+---
+import BrandPage from "@/components/brands/BrandPage.astro";
+
+const dewalt = {
+  title: "Irwin",
+  subtitle: "Innovación para la Precisión",
+  introduction: `Irwin se destaca como líder en herramientas de sujeción y corte, diseñadas para profesionales que
+  requieren precisión y confiabilidad. Su enfoque en el desarrollo de productos garantiza superar los
+  estándares de calidad.`,
+  cards: [
+    {
+      title: "Precisión y Seguridad",
+      description:
+        "Diseños ergonómicos y seguros para un trabajo eficiente",
+    },
+    {
+      title: "Durabilidad",
+      description:
+        "Herramientas fabricadas con materiales de alta resistencia",
+    },
+    {
+      title: "Variedad de Aplicaciones",
+      description:
+        "Soluciones para carpintería, metalurgia y más",
+    },
+    {
+      title: "Innovación Constante",
+      description:
+        "Productos que integran tecnología avanzada y ergonomía",
+    },
+  ],
+  timeline: [
+    {
+      title: "1885",
+      description: `Charles Irwin patenta la broca "Auger Bit", sentando las bases de la marca.`,
+    },
+    {
+      title: "1924",
+      description:
+        "Introducción de las tenazas de presión Vise-Grip®, revolucionando el mercado",
+    },
+    {
+      title: "1993",
+      description:
+        "Adquisición de Record Tools, ampliando su portafolio con herramientas de sujeción.",
+    },
+    {
+      title: "2002",
+      description:
+        "Relanzamiento global como Irwin Industrial Tools, consolidando su identidad.",
+    },
+    {
+      title: "2016",
+      description:
+        "Adquisición por Stanley Black & Decker, reforzando su alcance y desarrollo.",
+    },
+    {
+      title: "Actualidad",
+      description:
+        "Innovando con productos como las hojas de sierra Marathon® y herramientas para entornos industriales.",
+    },
+  ],
+};
+---
+
+<BrandPage
+  title={dewalt.title}
+  subtitle={dewalt.subtitle}
+  introduction={dewalt.introduction}
+  cards={dewalt.cards}
+  timeline={dewalt.timeline}
+/>

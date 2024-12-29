@@ -1,18 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Navbar from "../ui/Navbar.astro";
+import Navbar from "../components/ui/Navbar.astro";
+import Carousel from "@/components/brands/Carousel.astro";
 ---
 
 <Layout>
 	<section
 		class="flex flex-col items-center justify-center text-center w-full relative"
 	>
-		<div class="top-0 left-0 absolute w-full h-[calc(100vh-380px)]">
-			<Navbar />
+		<!-- NAVBAR FROM CHILD -->
+		<div
+			slot="navbar"
+			class="top-0 left-0 absolute w-full h-[calc(100vh-380px)]"
+		>
+			<Navbar title="Centro de Entrenamiento SBD" />
 		</div>
 
 		<div class="flex flex-col items-center justify-center w-full">
 			<video
+				transition:persist
 				src="/vids/video.mp4"
 				autoplay
 				loop
@@ -25,41 +31,119 @@ import Navbar from "../ui/Navbar.astro";
 			</div>
 
 			<div
-				class="absolute -bottom-20 left-0 right-0 z-10 bg-amber-300 max-w-fit rounded-md px-8 py-4 text-center mx-auto flex flex-col items-center justify-center gap-2 shadow-md"
+				class="absolute -bottom-20 left-0 right-0 z-10 bg-amber-300 max-w-fit rounded-md px-12 2xl:px-8 py-4 text-center mx-auto flex flex-col items-center justify-center gap-2 shadow-md"
 			>
 				<p class="font-semibold mt-4">Hechos para durar</p>
-				<h1 class="font-bold text-4xl">Acerca de Nosotros</h1>
-				<p class="text-lg text-nowrap">
-					Dedicados a hacer herramientas grandes – y hacer un mejor mundo.
+				<h1 class="font-bold text-3xl md:text-4xl">Nuestras Marcas</h1>
+				<p class="text-xs md:text-lg md:text-nowrap mb-2">
+					Dedicados a hacer herramientas grandes y hacer un mejor mundo.
 				</p>
 
+				<div class="block 2xl:hidden">
+					<Carousel />
+				</div>
+
 				<div
-					class="flex items-center justify-center gap-4 mt-8 [&>div]:w-[200px] [&>div]:h-[200px] [&>div]:bg-white [&>div]:shadow-lg [&>div]:rounded-md"
+					class="2xl:flex items-center justify-center gap-4 my-2 [&>a>div]:w-[200px] [&>a>div]:h-[200px] [&>a>div]:bg-white [&>a>div]:shadow-lg [&>a>div]:rounded-md hidden"
 				>
-					<div class=""></div>
-					<div class=""></div>
-					<div class=""></div>
-					<div class=""></div>
+					<a href="/brands/black-decker">
+						<div
+							class="overflow-hidden rounded-xl flex items-center justify-center"
+						>
+							<img
+								src="/assets/brands/black-and-decker-logo.svg"
+								alt="Dewalt"
+								class="w-[95%] h-[95%] object-contain"
+							/>
+						</div>
+					</a>
+
+					<a href="/brands/dewalt">
+						<div
+							class="overflow-hidden rounded-xl flex items-center justify-center"
+						>
+							<img
+								src="/assets/brands/dewalt-logo.svg"
+								alt="Dewalt"
+								class="w-[95%] h-[95%] object-contain rounded-md"
+							/>
+						</div>
+					</a>
+
+					<a href="/brands/stanley">
+						<div
+							class="overflow-hidden rounded-xl flex items-center justify-center"
+						>
+							<img
+								src="/assets/brands/stanley-logo.svg"
+								alt="Dewalt"
+								class="w-[95%] h-[95%] object-contain rounded-md"
+							/>
+						</div>
+					</a>
+
+					<a href="/brands/craftsman">
+						<div
+							class="overflow-hidden rounded-xl flex items-center justify-center"
+						>
+							<img
+								src="/assets/brands/craftsman-logo.svg"
+								alt="Dewalt"
+								class="w-[95%] h-[95%] object-contain rounded-md"
+							/>
+						</div>
+					</a>
+
+					<a href="/brands/irwin">
+						<div
+							class="overflow-hidden rounded-xl flex items-center justify-center"
+						>
+							<img
+								src="/assets/brands/irwin-logo.jpg"
+								alt="Dewalt"
+								class="w-[95%] h-[95%] object-cover rounded-md"
+							/>
+						</div>
+					</a>
+
+					<a href="/brands/proto">
+						<div
+							class="overflow-hidden rounded-xl flex items-center justify-center"
+						>
+							<img
+								src="/assets/brands/proto-logo.png"
+								alt="Dewalt"
+								class="w-[95%] h-[95%] object-contain rounded-md bg-[#EE2E1E]"
+							/>
+						</div>
+					</a>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<div class="container mx-auto mt-28">
+	<div class="container mx-auto mt-28 px-4 pb-[10rem]">
 		<section class="text-lg">
-			Desde su fundación, Black & Decker ha revolucionado el mundo de las
-			herramientas eléctricas y los productos de hogar. Su misión se centra en
-			brindar soluciones innovadoras y accesibles para tareas diarias,
-			empoderando tanto a profesionales como a usuarios ocasionales. Hoy en día,
-			la marca es sinónimo de practicidad, confiabilidad y diseño funcional.
+			<p>
+				El Centro de Entrenamiento SBD es una plataforma de capacitación y
+				comunicación, diseñada especialmente para maestros, profesionales y
+				contratistas de la construcción en Ecuador.
+			</p>
+
+			<p>
+				También es una Comunidad Activa , que al unirte, podrás mantenerte
+				actualizado, participar en eventos y obtener beneficios exclusivos que
+				te dan ventajas reales para tu trabajo diario.
+			</p>
+
+			<p>
+				En el ecosistema CESBD impulsamos marcas innovadoras de renombre como:
+				Black & Decker, Stanley, DeWALT, Craftsman, Irwin y Proto.
+			</p>
 		</section>
 
-		<section class="pb-[30rem] mt-10">
-			<h2 class="font-semibold text-3xl">
-				¿Por qué elegir <span class="text-amber-400">Black & Decker</span>?
-			</h2>
+		<section class="mt-10 scroll-container">
+			<h2 class="font-semibold text-3xl">¿Qué ofrecemos?</h2>
 		</section>
 	</div>
-
-	<div id="observe-me" class="h-10 w-10 bg-amber-500"></div>
 </Layout>

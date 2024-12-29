@@ -1,0 +1,70 @@
+---
+import BrandPage from "@/components/brands/BrandPage.astro";
+
+const dewalt = {
+  title: "Proto",
+  subtitle: "Excelencia en Herramientas Industriales",
+  introduction: `Proto es la marca líder en herramientas industriales diseñadas para superar los entornos más extremos. Desde su fundación, se ha enfocado en calidad, resistencia y precisión, siendo la opción preferida en sectores como la aeronáutica, la minería y la construcción pesada.`,
+  cards: [
+    {
+      title: "Resistencia Extrema",
+      description:
+        "Herramientas diseñadas para soportar condiciones adversas",
+    },
+    {
+      title: "Precisión Industrial",
+      description:
+        "Productos que garantizan resultados exactos en cada tarea",
+    },
+    {
+      title: "Calidad Certificada",
+      description:
+        "Cumplen con los más altos estándares internacionales",
+    },
+    {
+      title: "Innovación Técnica",
+      description:
+        "Soluciones para sectores especializados y de alta exigencia",
+    },
+  ],
+  timeline: [
+    {
+      title: "1907",
+      description: `Fundación de PLOMB Tools, predecesor de Proto, en Los Ángeles, California.`,
+    },
+    {
+      title: "1920",
+      description:
+        "Introducción de las primeras llaves de impacto para trabajos industriales.",
+    },
+    {
+      title: "1948",
+      description:
+        "Cambia su nombre a Proto, reflejando su enfoque profesional y tecnológico.",
+    },
+    {
+      title: "1990",
+      description:
+        "Adquisición por Stanley, incorporando la marca a un portafolio global.",
+    },
+    {
+      title: "2015",
+      description:
+        "Expansión con herramientas específicas para entornos con riesgo de explosión (ATEX)",
+    },
+    {
+      title: "Actualidad",
+      description:
+        "Proto lidera con herramientas de precisión y soluciones a medida para la industria pesada.",
+    },
+  ],
+};
+---
+
+<BrandPage
+  title={dewalt.title}
+  subtitle={dewalt.subtitle}
+  introduction={dewalt.introduction}
+  cards={dewalt.cards}
+  timeline={dewalt.timeline}
+/>
