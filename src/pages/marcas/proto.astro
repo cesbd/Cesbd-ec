@@ -8,18 +8,15 @@ const dewalt = {
   cards: [
     {
       title: "Resistencia Extrema",
-      description:
-        "Herramientas diseñadas para soportar condiciones adversas",
+      description: "Herramientas diseñadas para soportar condiciones adversas",
     },
     {
       title: "Precisión Industrial",
-      description:
-        "Productos que garantizan resultados exactos en cada tarea",
+      description: "Productos que garantizan resultados exactos en cada tarea",
     },
     {
       title: "Calidad Certificada",
-      description:
-        "Cumplen con los más altos estándares internacionales",
+      description: "Cumplen con los más altos estándares internacionales",
     },
     {
       title: "Innovación Técnica",
@@ -58,6 +55,21 @@ const dewalt = {
         "Proto lidera con herramientas de precisión y soluciones a medida para la industria pesada.",
     },
   ],
+  path: [
+    {
+      name: "Inicio",
+      href: "/",
+    },
+    {
+      name: "Marcas",
+      href: "/marcas",
+    },
+    {
+      name: "Proto",
+      href: "/marcas/proto",
+      current: true,
+    },
+  ],
 };
 ---
 
@@ -67,4 +79,5 @@ const dewalt = {
   introduction={dewalt.introduction}
   cards={dewalt.cards}
   timeline={dewalt.timeline}
+  path={dewalt.path}
 />

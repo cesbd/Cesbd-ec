@@ -75,3 +75,10 @@
     @apply bg-background text-foreground;
     }
 }
+
+.contact-container{
+  background-image: url("/assets/imgs/taller-inscription.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

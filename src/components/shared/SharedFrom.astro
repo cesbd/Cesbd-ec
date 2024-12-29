@@ -1,0 +1,103 @@
+---
+import Input from "../form/Input.astro";
+import Select from "../form/Select.astro";
+---
+
+<div class="container mx-auto mt-4 px-4 max-w-[50rem]">
+  <form action="" class="grid grid-cols-2 gap-8 [&>div]:col-span-2 lg:[&>div]:col-span-1" method="post">
+    
+    <Input id="cedula" name="cedula" label="Cédula" placeholder="Cédula" />
+
+    <Input id="name" name="name" label="Nombres" placeholder="Nombre" />
+
+    <Input
+      id="lastName"
+      name="lastName"
+      label="Apellidos"
+      placeholder="Apellido"
+    />
+
+    <Input
+      id="firstname"
+      type="email"
+      name="email"
+      label="Email"
+      placeholder="Email"
+    />
+
+    <Input
+      id="tel"
+      type="tel"
+      name="phone"
+      label="Teléfono"
+      placeholder="Teléfono"
+    />
+
+    <Select
+      id="businessType"
+      name="businessType"
+      label="Tipo de Negocio"
+      options={[
+        { value: "1", label: "Ferretería" },
+        { value: "2", label: "Constructora - Contratista" },
+        { value: "3", label: "Industria" },
+        { value: "4", label: "Independiente" },
+        { value: "5", label: "Usuario Final" },
+        { value: "6", label: "Otros" },
+      ]}
+    />
+
+    <Input
+      id="invoiceNumber"
+      name="invoiceNumber"
+      label="Número de Factura"
+      type="date"
+      placeholder="Número de Factura"
+    />
+
+    <Input
+      id="buyAddress"
+      name="buyAddress"
+      label="Lugar de Compra"
+      placeholder="Lugar de Compra"
+      type="date"
+    />
+
+    <Input
+      id="city"
+      name="city"
+      label="Ciudad"
+      placeholder="Ciudad"
+    />
+
+    <Input
+      id="buyingAmount"
+      name="buyingAmount"
+      label="Monto de Compra"
+      placeholder="Monto de Compra"
+    />
+
+    <Input
+      id="buyDate"
+      name="buyDate"
+      label="Fecha de Compra"
+      type="date"
+      placeholder="Fecha de Compra"
+    />
+
+    <Input
+      id="invoiceImg"
+      name="invoiceImg"
+      label="Imágen de la Factura"
+      placeholder="Imágen de la Factura"
+      type="file"
+    />
+
+    <button
+      type="submit"
+      class="bg-amber-300 px-12 py-2 rounded-md font-bold mx-auto text-center text-lg hover:bg-amber-400 transition-colors col-span-2"
+    >
+      Registrarme
+    </button>
+  </form>
+</div>

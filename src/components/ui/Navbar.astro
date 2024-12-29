@@ -6,18 +6,23 @@ const { title, subtitle } = Astro.props;
   id="landing-header"
   class="flex items-center py-4 px-8 bg-transparent sticky z-10 xl:flex-row flex-col top-0 left-0 pt-10"
 >
-  <div class="bg-amber-300 p-4 polygon px-10 2xl:px-20">
-    <a
-      href="#"
-      class="text-xs md:text-xl font-semibold text-black lg:ml-14 2xl:ml-16 inline-block lg:text-start text-nowrap"
-    >
-      <span
-        class="font-bold text-xl md:text-3xl inline-block lg:-ml-14 2xl:-ml-20"
-        >{title}</span
-      >
-      <br />{subtitle}
-    </a>
-  </div>
+  {
+    !!title?.length && (
+      <div class="bg-amber-300 p-4 polygon px-10 2xl:px-20">
+        <a
+          href="#"
+          class="text-xs md:text-xl font-semibold text-black lg:ml-14 2xl:ml-16 inline-block lg:text-start text-nowrap"
+        >
+          <span class="font-bold text-xl md:text-3xl inline-block lg:-ml-14 2xl:-ml-20">
+            {title}
+          </span>
+
+          <br />
+          {subtitle}
+        </a>
+      </div>
+    )
+  }
 
   <div transition:persist="transform duration-300 ease-in-out">
     <nav>
@@ -25,30 +30,35 @@ const { title, subtitle } = Astro.props;
         class="md:flex [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:font-semibold [&>li>a]:text-white [&>li>a]:text-lg"
       >
         <li>
-          <a class="hover:text-black hover:transition-colors" href="/"
-            >Inicio</a>
+          <a class="hover:text-black hover:transition-colors" href="/">Inicio</a
+          >
         </li>
         <li>
           <a class="hover:text-black hover:transition-colors" href="/marcas"
-            >Marcas</a>
+            >Marcas</a
+          >
         </li>
         <li>
           <a class="hover:text-black hover:transition-colors" href="/eventos"
-            >Eventos</a>
+            >Eventos</a
+          >
         </li>
         <li>
           <a
             class="hover:text-black hover:transition-colors"
-            href="/promociones">Promociones</a>
+            href="/promociones">Promociones</a
+          >
         </li>
         <li>
           <a
             class="hover:text-black hover:transition-colors"
-            href="/capacitaciones">Capacitaciones</a>
+            href="/capacitaciones">Capacitaciones</a
+          >
         </li>
         <li>
-          <a class="hover:text-black hover:transition-colors" href="contacto"
-            >Contacto</a>
+          <a class="hover:text-black hover:transition-colors" href="/contacto"
+            >Contacto</a
+          >
         </li>
       </ul>
     </nav>
@@ -56,7 +66,7 @@ const { title, subtitle } = Astro.props;
     <div
       id="menu-backdrop"
       class={`
-          absolute left-0 top-0 
+          fixed left-0 top-0
           bg-amber-200 backdrop:blur-lg rounded
           translate-x-[var(--menuLeft)] translate-y-[var(--menuTop)]
           w-[var(--menuWidth)] h-[var(--menuHeight)]

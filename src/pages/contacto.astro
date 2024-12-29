@@ -1,14 +1,36 @@
 ---
+import Navbar from '@/components/ui/Navbar.astro';
 import ContacForm from '../components/ContacForm.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <div class="container mx-auto mt-28 px-4 pb-[10rem] max-w-[50rem]">
+  <div class="fixed top-0 left-0 z-10 ml-auto flex justify-end w-full">
+    <Navbar />
+  </div>
+
+  <section class="min-h-dvh max-h-dvh h-full w-full contact-container relative py-10 lg:block hidden"> 
+    <div class="max-w-[35rem] mr-auto ml-[80px] mt-28 relative"> 
+      <div class="z-10 relative bg-white p-4 rounded-md py-8">
+        <h1 class="text-3xl font-bold text-center text-amber-400">Formulario de Inscripción</h1>
+        <ContacForm />
+      </div>
+
+      <div class="bg-amber-500 absolute top-0 left-0 w-full h-full blur-3xl opacity-55"></div>
+    </div>
+  </section>
+
+  <div class="max-h-auto overflow-hidden lg:hidden">
+    <img src="/assets/imgs/taller-inscription.jpg" alt="Taller Inscripción" class="w-full h-full object-cover" />
+  </div>
+  
+  <section class="container mx-auto my-12 px-4 max-w-[50rem] lg:hidden shadow-md drop-shadow-sm max-h-fit py-8">
     <h1 class="text-3xl font-bold text-center">Formulario de Inscripción</h1>
   
     <ContacForm />
-  </div>
+
+    <div class="py-5"></div>
+  </section>
 </Layout>
 
 

@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/ui/Navbar.astro";
 import Carousel from "@/components/brands/Carousel.astro";
+import { HomeAccordionContent } from "@/components/home/HomeAccordionContent";
 ---
 
 <Layout>
@@ -19,7 +20,7 @@ import Carousel from "@/components/brands/Carousel.astro";
 		<div class="flex flex-col items-center justify-center w-full">
 			<video
 				transition:persist
-				src="/vids/video.mp4"
+				src="/assets/vids/video.mp4"
 				autoplay
 				loop
 				muted
@@ -46,7 +47,7 @@ import Carousel from "@/components/brands/Carousel.astro";
 				<div
 					class="2xl:flex items-center justify-center gap-4 my-2 [&>a>div]:w-[200px] [&>a>div]:h-[200px] [&>a>div]:bg-white [&>a>div]:shadow-lg [&>a>div]:rounded-md hidden"
 				>
-					<a href="/brands/black-decker">
+					<a href="/marcas/black-decker">
 						<div
 							class="overflow-hidden rounded-xl flex items-center justify-center"
 						>
@@ -58,7 +59,7 @@ import Carousel from "@/components/brands/Carousel.astro";
 						</div>
 					</a>
 
-					<a href="/brands/dewalt">
+					<a href="/marcas/dewalt">
 						<div
 							class="overflow-hidden rounded-xl flex items-center justify-center"
 						>
@@ -70,7 +71,7 @@ import Carousel from "@/components/brands/Carousel.astro";
 						</div>
 					</a>
 
-					<a href="/brands/stanley">
+					<a href="/marcas/stanley">
 						<div
 							class="overflow-hidden rounded-xl flex items-center justify-center"
 						>
@@ -82,7 +83,7 @@ import Carousel from "@/components/brands/Carousel.astro";
 						</div>
 					</a>
 
-					<a href="/brands/craftsman">
+					<a href="/marcas/craftsman">
 						<div
 							class="overflow-hidden rounded-xl flex items-center justify-center"
 						>
@@ -94,7 +95,7 @@ import Carousel from "@/components/brands/Carousel.astro";
 						</div>
 					</a>
 
-					<a href="/brands/irwin">
+					<a href="/marcas/irwin">
 						<div
 							class="overflow-hidden rounded-xl flex items-center justify-center"
 						>
@@ -106,7 +107,7 @@ import Carousel from "@/components/brands/Carousel.astro";
 						</div>
 					</a>
 
-					<a href="/brands/proto">
+					<a href="/marcas/proto">
 						<div
 							class="overflow-hidden rounded-xl flex items-center justify-center"
 						>
@@ -142,8 +143,19 @@ import Carousel from "@/components/brands/Carousel.astro";
 			</p>
 		</section>
 
-		<section class="mt-10 scroll-container">
+		<section class="mt-10">
 			<h2 class="font-semibold text-3xl">¿Qué ofrecemos?</h2>
+
+			<p class="mt-4">
+				CESBD no solo brinda formación técnica, sino también una comunidad
+				vibrante y beneficios exclusivos que transforman la experiencia de los
+				especialistas en el sector, para crecer profesionalmente y potenciar tu
+				carrera.
+			</p>
+		</section>
+
+		<section>
+			<HomeAccordionContent client:load />
 		</section>
 	</div>
 </Layout>

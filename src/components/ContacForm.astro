@@ -1,21 +1,78 @@
 ---
 import Input from "./form/Input.astro";
+import Select from "./form/Select.astro";
 ---
 
-<div class="container mx-auto mt-4 px-4 pb-[10rem] max-w-[50rem]">
-  <form action="" class="grid grid-cols-1 gap-y-8" method="post">
+<div class="container mx-auto mt-4 px-4 max-w-[50rem]">
+  <form action="" class="grid grid-cols-2 gap-8 [&>div]:col-span-1" method="post">
+    
     <Input id="cedula" name="cedula" label="Cédula" placeholder="Cédula" />
 
     <Input id="name" name="name" label="Nombres" placeholder="Nombre" />
 
-    <Input id="lastName" name="lastName" label="Apellidos" placeholder="Apellido" />
+    <Input
+      id="lastName"
+      name="lastName"
+      label="Apellidos"
+      placeholder="Apellido"
+    />
 
-    <Input id="firstname" type="email" name="email" label="Email" placeholder="Email" />
+    <Input
+      id="bornDate"
+      name="bornDate"
+      label="Fecha de Nacimiento"
+      type="date"
+      placeholder="Fecha de Nacimiento"
+    />
 
-    <Input id="tel" type ="tel" name="phone" label="Teléfono" placeholder="Teléfono" />
+    <Input
+      id="firstname"
+      type="email"
+      name="email"
+      label="Email"
+      placeholder="Email"
+    />
 
-    <button type="submit" class="mt-4 bg-amber-300 px-12 py-2 rounded-md font-bold mx-auto text-center text-lg hover:bg-amber-400 transition-colors">
-      Enviar Datos
+    <Input
+      id="tel"
+      type="tel"
+      name="phone"
+      label="Teléfono"
+      placeholder="Teléfono"
+    />
+
+    <Select
+      id="major"
+      name="major"
+      label="Especialidad"
+      options={[
+        { value: "1", label: "Eléctrico" },
+        { value: "2", label: "Metalmecánico" },
+        { value: "3", label: "Mecánico Automotriz" },
+        { value: "4", label: "Línea Madera" },
+        { value: "5", label: "Jardinería" },
+        { value: "6", label: "General" },
+      ]}
+    />
+
+    <Select
+      id="businessType"
+      name="businessType"
+      label="Tipo de Negocio"
+      options={[
+        { value: "1", label: "Ferretería" },
+        { value: "2", label: "Constructora - Contratista" },
+        { value: "3", label: "Industria" },
+        { value: "4", label: "Independiente" },
+        { value: "5", label: "Otros" },
+      ]}
+    />
+
+    <button
+      type="submit"
+      class="bg-amber-300 px-12 py-2 rounded-md font-bold mx-auto text-center text-lg hover:bg-amber-400 transition-colors col-span-2"
+    >
+      Inscribirme
     </button>
   </form>
 </div>

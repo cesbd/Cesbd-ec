@@ -23,7 +23,7 @@ export function CarouselSpacing() {
     >
       <CarouselContent className="-ml-1 [&>div>a>div]:aspect-square [&>div>a>div]:bg-white [&>div>a>div]:shadow-lg [&>div>a>div]:rounded-md [&>div]:basis-1/2 lg:[&>div]:basis-1/3 xl:[&>div]:basis-1/4 [&>div]:pl-4">
         <CarouselItem>
-          <a href="/brands/black-decker">
+          <a href="/marcas/black-decker">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
                 src="/assets/brands/black-and-decker-logo.svg"
@@ -35,7 +35,7 @@ export function CarouselSpacing() {
         </CarouselItem>
 
         <CarouselItem>
-          <a href="/brands/dewalt">
+          <a href="/marcas/dewalt">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
                 src="/assets/brands/dewalt-logo.svg"
@@ -47,7 +47,7 @@ export function CarouselSpacing() {
         </CarouselItem>
 
         <CarouselItem>
-          <a href="/brands/stanley">
+          <a href="/marcas/stanley">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
                 src="/assets/brands/stanley-logo.svg"
@@ -59,7 +59,7 @@ export function CarouselSpacing() {
         </CarouselItem>
 
         <CarouselItem>
-          <a href="/brands/craftsman">
+          <a href="/marcas/craftsman">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
                 src="/assets/brands/craftsman-logo.svg"
@@ -71,7 +71,7 @@ export function CarouselSpacing() {
         </CarouselItem>
 
         <CarouselItem>
-          <a href="/brands/irwin">
+          <a href="/marcas/irwin">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
                 src="/assets/brands/irwin-logo.jpg"
@@ -83,7 +83,7 @@ export function CarouselSpacing() {
         </CarouselItem>
 
         <CarouselItem>
-          <a href="/brands/proto">
+          <a href="/marcas/proto">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
                 src="/assets/brands/proto-logo.png"

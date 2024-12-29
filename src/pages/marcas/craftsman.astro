@@ -58,6 +58,21 @@ const dewalt = {
         "Craftsman lidera con herramientas conectadas y productos ergonómicos para los profesionales de hoy.",
     },
   ],
+  path: [
+    {
+      name: "Inicio",
+      href: "/",
+    },
+    {
+      name: "Marcas",
+      href: "/marcas",
+    },
+    {
+      name: "Craftsman",
+      href: "/marcas/craftsman",
+      current: true,
+    },
+  ],
 };
 ---
 
@@ -67,4 +82,5 @@ const dewalt = {
   introduction={dewalt.introduction}
   cards={dewalt.cards}
   timeline={dewalt.timeline}
+  path={dewalt.path}
 />

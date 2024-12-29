@@ -1,6 +1,7 @@
 ---
 import Navbar from "@/components/ui/Navbar.astro";
 import Layout from "../../layouts/Layout.astro";
+import { CustomBreadcrumb } from "../shared/CustomBreadcrumb";
 
 interface Props {
   title: string;
@@ -8,6 +9,11 @@ interface Props {
   introduction: string;
   cards: Card[];
   timeline: Timeline[];
+  path?: {
+    name: string;
+    href: string;
+    current?: boolean;
+  }[];
 }
 
 interface Card {
@@ -20,7 +26,7 @@ interface Timeline {
   description: string;
 }
 
-const { title, subtitle, introduction, cards, timeline } = Astro.props;
+const { title, subtitle, introduction, cards, timeline, path } = Astro.props;
 ---
 
 <Layout>
@@ -35,7 +41,7 @@ const { title, subtitle, introduction, cards, timeline } = Astro.props;
     <div class="flex flex-col items-center justify-center w-full">
       <video
         transition:persist
-        src="/vids/video.mp4"
+        src="/assets/vids/video.mp4"
         autoplay
         loop
         muted
@@ -48,12 +54,16 @@ const { title, subtitle, introduction, cards, timeline } = Astro.props;
     </div>
   </section>
 
-  <div class="container mx-auto mt-28 px-4 pb-[10rem]">
+  <div class="container mx-auto mt-10 px-4 pb-[10rem]">
+    <div class="mb-10">
+      <CustomBreadcrumb links={path || []} />
+    </div>
+
     <section class="text-lg">
       {introduction}
     </section>
 
-    <section class="mt-10 scroll-container">
+    <section class="mt-10">
       <h2 class="font-semibold text-3xl">
         ¿Por qué elegir <span class="text-amber-400">{title}</span>?
       </h2>
