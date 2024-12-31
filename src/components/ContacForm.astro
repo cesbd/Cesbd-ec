@@ -1,11 +1,19 @@
 ---
 import Input from "./form/Input.astro";
 import Select from "./form/Select.astro";
+import { actions } from "astro:actions";
+
+const result = Astro.getActionResult(actions.getGreeting);
+
+export const prerender = false;
 ---
 
 <div class="container mx-auto mt-4 px-4 max-w-[50rem]">
-  <form action="" class="grid grid-cols-2 gap-8 [&>div]:col-span-1" method="post">
-    
+  <form
+    method="post"
+    action={actions.getGreeting}
+    class="grid grid-cols-2 gap-8 [&>div]:col-span-1"
+  >
     <Input id="cedula" name="cedula" label="Cédula" placeholder="Cédula" />
 
     <Input id="name" name="name" label="Nombres" placeholder="Nombre" />
@@ -75,4 +83,31 @@ import Select from "./form/Select.astro";
       Inscribirme
     </button>
   </form>
+
+  {
+    !!result?.data && (
+      <div
+        class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md mt-4 rounded-lg"
+        role="alert"
+      >
+        <div class="flex">
+          <div class="py-1">
+            <svg
+              class="fill-current h-6 w-6 text-teal-500 mr-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
+            </svg>
+          </div>
+          <div>
+            <p class="font-bold">Éxito!</p>
+            <p class="text-sm">
+              Te has registrado correctamente, se te enviará un correo con los datos de la inscripción.
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 </div>
