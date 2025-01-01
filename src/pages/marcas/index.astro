@@ -1,7 +1,8 @@
 ---
+import { HomeAccordionContent } from "@/components/home/HomeAccordionContent";
+import BrandCarousel from "@/components/brands/BrandCarousel.astro";
+import Layout from "@/layouts/Layout.astro";
 import Navbar from "@/components/ui/Navbar.astro";
-import Layout from "../../layouts/Layout.astro";
-
 ---
 
 <Layout>
@@ -13,13 +14,13 @@ import Layout from "../../layouts/Layout.astro";
 			slot="navbar"
 			class="top-0 left-0 absolute w-full h-[calc(100vh-380px)]"
 		>
-			<Navbar />
+			<Navbar title="Centro de Entrenamiento SBD" />
 		</div>
 
 		<div class="flex flex-col items-center justify-center w-full">
 			<video
 				transition:persist
-				src="/vids/video.mp4"
+				src="/assets/vids/video.mp4"
 				autoplay
 				loop
 				muted
@@ -31,180 +32,34 @@ import Layout from "../../layouts/Layout.astro";
 			</div>
 
 			<div
-				class="absolute -bottom-20 left-0 right-0 z-10 bg-amber-300 max-w-fit rounded-md px-8 py-4 text-center mx-auto flex flex-col items-center justify-center gap-2 shadow-md"
+				class="absolute -bottom-20 left-0 right-0 z-10 bg-amber-300 max-w-fit rounded-md px-12 2xl:px-8 py-4 text-center mx-auto flex flex-col items-center justify-center gap-2 shadow-md"
 			>
 				<p class="font-semibold mt-4">Hechos para durar</p>
-				<h1 class="font-bold text-4xl">Acerca de Nosotros</h1>
-				<p class="text-lg text-nowrap">
-					Dedicados a hacer herramientas grandes – y hacer un mejor mundo.
+				<h1 class="font-bold text-3xl md:text-4xl">Nuestras Marcas</h1>
+				<p class="text-xs md:text-lg md:text-nowrap mb-2">
+					Dedicados a hacer herramientas grandes y hacer un mejor mundo.
 				</p>
 
-				<div
-					class="flex items-center justify-center gap-4 my-2 [&>div]:w-[200px] [&>div]:h-[200px] [&>div]:bg-white [&>div]:shadow-lg [&>div]:rounded-md"
-				>
-					<div class=""></div>
-					<div class=""></div>
-					<div class=""></div>
-					<div class=""></div>
-				</div>
+				<!-- <div class="block 2xl:hidden"> -->
+					<BrandCarousel />
+				<!-- </div> -->
 			</div>
 		</div>
 	</section>
 
 	<div class="container mx-auto mt-28 px-4 pb-[10rem]">
 		<section class="text-lg">
-			Desde su fundación, Black & Decker ha revolucionado el mundo de las
-			herramientas eléctricas y los productos de hogar. Su misión se centra en
-			brindar soluciones innovadoras y accesibles para tareas diarias,
-			empoderando tanto a profesionales como a usuarios ocasionales. Hoy en día,
-			la marca es sinónimo de practicidad, confiabilidad y diseño funcional.
-		</section>
+			<p>
+				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem modi animi quae atque totam accusamus labore ad suscipit eveniet, quo itaque voluptates sunt, quos repellat dolorem ipsum sint architecto illo.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem modi animi quae atque totam accusamus labore ad suscipit eveniet, quo itaque voluptates sunt, quos repellat dolorem ipsum sint architecto illo.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem modi animi quae atque totam accusamus labore ad suscipit eveniet, quo itaque voluptates sunt, quos repellat dolorem ipsum sint architecto illo.
+			</p>
 
-		<section class="mt-10 ">
-			<h2 class="font-semibold text-3xl">
-				¿Por qué elegir <span class="text-amber-400">Black & Decker</span>?
-			</h2>
+			<p>
+				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem modi animi quae atque totam accusamus labore ad suscipit eveniet, quo itaque voluptates sunt, quos repellat dolorem ipsum sint architecto illo.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem modi animi quae atque totam accusamus labore ad suscipit eveniet, quo itaque voluptates sunt, quos repellat dolorem ipsum sint architecto illo.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem modi animi quae atque totam accusamus labore ad suscipit eveniet, quo itaque voluptates sunt, quos repellat dolorem ipsum sint architecto illo.
+			</p>
 
-			<div id="fade-in-up-observer"></div>
-
-			<div
-				data-why="black-decker"
-				class="mt-4 [&>div>h3]:my-2 [&>div>h3]:text-xl [&>div>h3]:font-bold [&>div>p]:text-gray-500 [&>div>p]:text-center [&>div>h3]:text-center grid grid-cols-[repeat(auto-fit,minmax(340px,1fr))] gap-4"
-			>
-				<div
-					class="rounded-md p-4 flex flex-col items-center justify-center shadow-lg flex-1 animate__animated animate__faster"
-				>
-					<h3>Versatilidad</h3>
-					<p>
-						Productos diseñados para todo tipo de usuario, desde el bricolaje
-						hasta proyectos más complejos.
-					</p>
-				</div>
-
-				<div
-					class="rounded-md p-4 flex flex-col items-center justify-center shadow-lg flex-1 animate__delay-1s animate__animated animate__faster"
-				>
-					<h3>Innovación Sostenible</h3>
-					<p>
-						Soluciones que combinan eficiencia energética y diseño amigable con
-						el medio ambiente.
-					</p>
-				</div>
-
-				<div
-					class="rounded-md p-4 flex flex-col items-center justify-center shadow-lg flex-1 animate__delay-2s animate__animated animate__faster"
-				>
-					<h3>Accesibilidad</h3>
-					<p>Herramientas confiables y económicas sin comprometer la calidad</p>
-				</div>
-
-				<div
-					class="rounded-md p-4 flex flex-col items-center justify-center shadow-lg flex-1 animate__delay-3s animate__animated animate__faster"
-				>
-					<h3>Compromiso con el Usuario</h3>
-					<p class="text-gray-500">
-						Una marca que evoluciona escuchando las necesidades de sus clientes.
-					</p>
-				</div>
-			</div>
-		</section>
-
-		<!-- HISTORIA -->
-		<section class="mt-12">
-			<h2 class="font-semibold text-3xl text-end">
-				<span class="text-amber-400">Historia:</span> Un Legado de Excelencia
-			</h2>
-
-			<div
-				class="p-4 border-l-4 border-l-amber-500 rounded-md gap-2 shadow-md mt-4 text-lg px-8"
-			>
-				<p class="text-2xl font-bold">1910</p>
-				<p>
-					Duncan Black y Alonzo Decker fundan Black & Decker Manufacturing
-					Company en Baltimore, Maryland.
-				</p>
-			</div>
-
-			<div
-				class="p-4 border-l-4 border-l-amber-500 rounded-md gap-2 shadow-md mt-4 text-lg px-8"
-			>
-				<p class="text-2xl font-bold">1917</p>
-				<p>
-					Patente del primer taladro eléctrico portátil con interruptor de
-					gatillo, que redefine el mercado.
-				</p>
-			</div>
-
-			<div
-				class="p-4 border-l-4 border-l-amber-500 rounded-md gap-2 shadow-md mt-4 text-lg px-8"
-			>
-				<p class="text-2xl font-bold">1946</p>
-				<p>
-					Introducción de herramientas eléctricas para el consumidor, llevando
-					tecnología profesional a los hogares.
-				</p>
-			</div>
-
-			<div
-				class="p-4 border-l-4 border-l-amber-500 rounded-md gap-2 shadow-md mt-4 text-lg px-8"
-			>
-				<p class="text-2xl font-bold">1984</p>
-				<p>
-					Adquisición de General Electric Home Appliances, ampliando su
-					portafolio hacia electrodomésticos.
-				</p>
-			</div>
-
-			<div
-				class="p-4 border-l-4 border-l-amber-500 rounded-md gap-2 shadow-md mt-4 text-lg px-8"
-			>
-				<p class="text-2xl font-bold">2010</p>
-				<p>
-					Fusión con Stanley, creando Stanley Black & Decker, un gigante global
-					en herramientas.
-				</p>
-			</div>
-
-			<div
-				class="p-4 border-l-4 border-l-amber-500 rounded-md gap-2 shadow-md mt-4 text-lg px-8"
-			>
-				<p class="text-2xl font-bold">Actualidad</p>
-				<p>
-					Black & Decker lidera con productos sostenibles como su línea de
-					herramientas eléctricas con baterías intercambiables y
-					electrodomésticos ecoeficientes.
-				</p>
-			</div>
+			<p>
+				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem modi animi quae atque totam accusamus labore ad suscipit eveniet, quo itaque voluptates sunt, quos repellat dolorem ipsum sint architecto illo.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem modi animi quae atque totam accusamus labore ad suscipit eveniet, quo itaque voluptates sunt, quos repellat dolorem ipsum sint architecto illo.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem modi animi quae atque totam accusamus labore ad suscipit eveniet, quo itaque voluptates sunt, quos repellat dolorem ipsum sint architecto illo.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem modi animi quae atque totam accusamus labore ad suscipit eveniet, quo itaque voluptates sunt, quos repellat dolorem ipsum sint architecto illo.
+			</p>
 		</section>
 	</div>
 </Layout>
-
-<script>
-	const $whyBlackDecker = document.querySelector(
-		"[data-why='black-decker']",
-	) as HTMLDivElement;
-	const children = $whyBlackDecker.children as HTMLCollectionOf<HTMLDivElement>;
-	const $fadeInUpObserver = document.querySelector(
-		"#fade-in-up-observer",
-	) as HTMLDivElement;
-
-	const observer = new IntersectionObserver((entries) => {
-		entries.forEach(({ isIntersecting }) => {
-			console.log({ isIntersecting });
-
-			if (isIntersecting) {
-				for (const child of children) {
-					child.classList.add("animate__fadeInUp");
-				}
-			}
-		});
-	});
-
-	observer.observe($fadeInUpObserver);
-</script>
-
-<style>
-	:root {
-		--animate-delay: 0.3s;
-	}
-</style>

@@ -6,7 +6,10 @@ const RegisterUsers = defineTable({
     name: column.text(),
     lastName: column.text(),
     email: column.text(),
-    password: column.text(),
+    phone: column.text(),
+    bornDate: column.date(),
+    major: column.text(),
+    businessType: column.text(),
     createdAt: column.date({ default: NOW }),
     updatedAt: column.date({ default: NOW })
   }

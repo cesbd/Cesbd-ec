@@ -2,6 +2,9 @@
 import Navbar from '@/components/ui/Navbar.astro';
 import ContacForm from '../components/ContacForm.astro';
 import Layout from '../layouts/Layout.astro';
+
+// esto se agrega en pages/tuppagina.astro no en los componentes
+export const prerender = false;
 ---
 
 <Layout>
@@ -10,7 +13,7 @@ import Layout from '../layouts/Layout.astro';
   </div>
 
   <section class="min-h-dvh max-h-dvh h-full w-full contact-container relative py-10 lg:block hidden"> 
-    <div class="max-w-[35rem] mr-auto ml-[80px] mt-28 relative"> 
+    <div class="max-w-[35rem] mr-auto ml-[80px] mt-14 relative"> 
       <div class="z-10 relative bg-white p-4 rounded-md py-8">
         <h1 class="text-3xl font-bold text-center text-amber-400">Formulario de Inscripción</h1>
         <ContacForm />
