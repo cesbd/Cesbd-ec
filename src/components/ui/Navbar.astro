@@ -1,4 +1,6 @@
 ---
+import { DrawerNav } from "./DrawerNav.tsx";
+
 const { title, subtitle } = Astro.props;
 ---
 
@@ -24,7 +26,14 @@ const { title, subtitle } = Astro.props;
     )
   }
 
-  <div transition:persist="transform duration-300 ease-in-out">
+  <div class="md:hidden">
+    <DrawerNav client:load />
+  </div>
+
+  <div
+    transition:persist="transform duration-300 ease-in-out"
+    class="hidden md:block md:mt-4"
+  >
     <nav>
       <ul
         class="md:flex [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:font-semibold [&>li>a]:text-white [&>li>a]:text-lg"
