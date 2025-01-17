@@ -3,8 +3,15 @@ import Input from "./form/Input.astro";
 import Select from "./form/Select.astro";
 import { actions } from "astro:actions";
 import Alert from "./ui/Alert.astro";
+import type { FormTye } from "@/types/FormType";
+
+interface Props {
+  formType: FormTye;
+}
 
 const result = Astro.getActionResult(actions.sendEmail);
+
+const { formType } = Astro.props;
 ---
 
 <div class="container mx-auto mt-4 px-4 max-w-[50rem]">
@@ -14,6 +21,8 @@ const result = Astro.getActionResult(actions.sendEmail);
     action={actions.sendEmail}
     class="grid grid-cols-2 gap-8 [&>div]:col-span-1"
   >
+    <Input id="formType" name="formType" label="Tipo de Formulario" type="hidden" value={formType} />
+
     <Input id="cedula" name="cedula" label="Cédula" placeholder="Cédula" />
 
     <Input id="name" name="name" label="Nombres" placeholder="Nombre" />

@@ -1,21 +1,51 @@
 import { column, defineDb, defineTable, NOW } from 'astro:db';
 
-const RegisterUsers = defineTable({
+const RegisterUser = defineTable({
+  columns: {
+    regiter_user_id: column.number({ primaryKey: true }),
+
+    // datos de usuario
+    ci: column.text(),
+    name: column.text(),
+    last_name: column.text(),
+    email: column.text(),
+    phone_number: column.text(),
+    born_date: column.date(),
+    major: column.text(),
+    business_type: column.text(),
+
+    form_type_id: column.number(),
+
+    register_date: column.date({ default: NOW }),
+  },
+  foreignKeys: [
+    {
+      columns: ['form_type_id'],
+      references: () => [FormTye.columns.id],
+    }
+  ],
+  indexes: [
+    {
+      unique: true,
+      on: ['ci', 'email', 'phone_number'],
+      name: 'unique_users'
+    },
+  ]
+});
+
+const FormTye = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
-    name: column.text(),
-    lastName: column.text(),
-    email: column.text(),
-    phone: column.text(),
-    bornDate: column.date(),
-    major: column.text(),
-    businessType: column.text(),
-    createdAt: column.date({ default: NOW }),
-    updatedAt: column.date({ default: NOW })
+    event_name: column.text(),
+    event_type: column.text(),
+    event_location: column.text(),
+    event_date: column.date(),
+    brand: column.text(),
+    staff: column.text(),
   }
 });
 
 // https://astro.build/db/config
 export default defineDb({
-  tables: { RegisterUsers }
+  tables: { RegisterUser, FormTye }
 });

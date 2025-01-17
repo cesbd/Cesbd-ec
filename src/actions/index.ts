@@ -2,7 +2,8 @@ import { ActionError, defineAction } from 'astro:actions';
 import { Resend } from 'resend';
 import { EMAIL, RESEND_API_KEY } from 'astro:env/server';
 import { z } from 'astro/zod';
-import { db, eq, RegisterUsers } from 'astro:db';
+import { db, eq, or, RegisterUser } from 'astro:db';
+
 
 const resend = new Resend(RESEND_API_KEY);
 
@@ -38,7 +39,8 @@ export const server = {
       }
 
       // save in db
-      const result = await db.select().from(RegisterUsers).where(eq(RegisterUsers.email, validation.data.email));
+      const result = await db.select().from(RegisterUser)
+        .where(or(eq(RegisterUser.email, validation.data.email), eq(RegisterUser.ci, validation.data.cedula)));
 
       if (result.length > 0) {
         throw new ActionError({
@@ -49,14 +51,16 @@ export const server = {
 
       try {
         // if not exists add to db
-        await db.insert(RegisterUsers).values({
+        await db.insert(RegisterUser).values({
+          ci: validation.data.cedula,
           email: validation.data.email,
           name: validation.data.name,
-          lastName: validation.data.lastName,
-          phone: validation.data.phone,
-          bornDate: new Date(validation.data.bornDate),
+          last_name: validation.data.lastName,
+          phone_number: validation.data.phone,
+          born_date: new Date(validation.data.bornDate),
           major: validation.data.major,
-          businessType: validation.data.businessType,
+          business_type: validation.data.businessType,
+          form_type_id: 1,
         });
       } catch (error) {
         console.log(error);

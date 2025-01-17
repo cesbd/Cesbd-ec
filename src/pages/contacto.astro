@@ -2,6 +2,7 @@
 import Navbar from '@/components/ui/Navbar.astro';
 import ContacForm from '../components/ContacForm.astro';
 import Layout from '../layouts/Layout.astro';
+import { FormTye } from '@/types/FormType';
 
 // esto se agrega en pages/tuppagina.astro no en los componentes
 export const prerender = false;
@@ -16,7 +17,7 @@ export const prerender = false;
     <div class="max-w-[35rem] mr-auto ml-[80px] mt-14 relative"> 
       <div class="z-10 relative bg-white p-4 rounded-md py-8">
         <h1 class="text-3xl font-bold text-center text-amber-400">Formulario de Inscripción</h1>
-        <ContacForm />
+        <ContacForm formType={FormTye.CONTACTO} />
       </div>
 
       <div class="bg-amber-500 absolute top-0 left-0 w-full h-full blur-3xl opacity-55"></div>
@@ -30,7 +31,7 @@ export const prerender = false;
   <section class="container mx-auto my-12 px-4 max-w-[50rem] lg:hidden shadow-md drop-shadow-sm max-h-fit py-8">
     <h1 class="text-3xl font-bold text-center">Formulario de Inscripción</h1>
   
-    <ContacForm />
+    <ContacForm formType={FormTye.CONTACTO} />
 
     <div class="py-5"></div>
   </section>
