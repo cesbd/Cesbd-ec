@@ -1,28 +1,43 @@
 ---
 import SharedFrom from "@/components/shared/SharedFrom.astro";
 import Navbar from "@/components/ui/Navbar.astro";
+import { FormType } from "@/interfaces/FormType";
 import Layout from "@/layouts/Layout.astro";
 
 
-const { typePage } = Astro.props;
+const images: Record<keyof typeof FormType, string> = {
+  EVENTO: '/assets/imgs/event.png',
+  PREMIO: '/assets/imgs/premio.png',
+  DESCARGA: '/assets/imgs/descargas.png',
+  PROMO: '/assets/imgs/promos.png',
+  CONTACTO: '/assets/imgs/contacto.png',
+}
+
+interface Props {
+  pageType: keyof typeof FormType;
+}
+
+const { pageType } = Astro.props;
+
+const image = images[pageType];
 
 ---
-
-
 <Layout>
   <section>
     <div class="relative w-full h-full">
       <div slot="navbar" class="absolute top-0 left-0 z-40 ml-auto flex justify-end w-full">
         <Navbar />
       </div>
-      <img src="/assets/imgs/shared-form.jpg" alt="Eventos" class="w-full max-h-[40rem] object-center mx-auto" />
+      <img src={image} alt="Eventos" class="w-full max-h-[40rem] object-center mx-auto" />
       
-      <div class="absolute top-0 left-0 w-full h-full opacity-30 z-10 bg-black"></div>
+      <div class="absolute top-0 left-0 w-full h-full opacity-50 z-10 bg-black"></div>
     </div>
 
     <div class="max-w-[50rem] mx-auto px-4 py-16 text-gray-800 shadow-md rounded-lg mt-4">
       <h1 class="text-3xl font-bold text-center mb-10 text-amber-400">Formulario de Registro</h1>
-      <SharedFrom />
+      <SharedFrom 
+        formType={FormType[pageType]}
+      />
     </div>
 
     <div class="pb-14" />

@@ -22,11 +22,11 @@ const items = [
     url: "/",
     icon: Home,
   },
-  {
-    title: "Marcas",
-    url: "/marcas",
-    icon: StickyNote,
-  },
+  // {
+  //   title: "Marcas",
+  //   url: "/marcas",
+  //   icon: StickyNote,
+  // },
   {
     title: "Eventos",
     url: "/eventos",

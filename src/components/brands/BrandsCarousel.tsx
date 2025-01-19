@@ -26,9 +26,9 @@ export function CarouselSpacing() {
           <a href="/marcas/black-decker">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
-                src="/assets/brands/black-and-decker-logo.svg"
+                src="/assets/brands/BLACK-AND-DECKER.png"
                 alt="Dewalt"
-                className="w-[95%] h-[95%] object-contain"
+                className="object-fill h-[95%] w-[95%] rounded-md"
               />
             </div>
           </a>
@@ -38,9 +38,9 @@ export function CarouselSpacing() {
           <a href="/marcas/dewalt">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
-                src="/assets/brands/dewalt-logo.svg"
+                src="/assets/brands/DEWALT.png"
                 alt="Dewalt"
-                className="w-[95%] h-[95%] object-contain rounded-md"
+                className="object-fill h-[95%] w-[95%] rounded-md"
               />
             </div>
           </a>
@@ -50,9 +50,9 @@ export function CarouselSpacing() {
           <a href="/marcas/stanley">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
-                src="/assets/brands/stanley-logo.svg"
+                src="/assets/brands/STANLEY.png"
                 alt="Dewalt"
-                className="w-[95%] h-[95%] object-contain rounded-md"
+                className="w-[95%] h-[95%] object-fill rounded-md"
               />
             </div>
           </a>
@@ -62,9 +62,9 @@ export function CarouselSpacing() {
           <a href="/marcas/craftsman">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
-                src="/assets/brands/craftsman-logo.svg"
+                src="/assets/brands/CRAFTSMAN.png"
                 alt="Dewalt"
-                className="w-[95%] h-[95%] object-contain rounded-md"
+                className="w-[95%] h-[95%] object-fill rounded-md"
               />
             </div>
           </a>
@@ -74,9 +74,9 @@ export function CarouselSpacing() {
           <a href="/marcas/irwin">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
-                src="/assets/brands/irwin-logo.jpg"
+                src="/assets/brands/IRWIN.png"
                 alt="Dewalt"
-                className="w-[95%] h-[95%] object-cover rounded-md"
+                className="w-[95%] h-[95%] object-fill rounded-md"
               />
             </div>
           </a>
@@ -86,9 +86,9 @@ export function CarouselSpacing() {
           <a href="/marcas/proto">
             <div className="overflow-hidden rounded-xl flex items-center justify-center mx-auto">
               <img
-                src="/assets/brands/proto-logo.png"
+                src="/assets/brands/PROTO.png"
                 alt="Dewalt"
-                className="w-[95%] h-[95%] object-contain rounded-md bg-[#EE2E1E]"
+                className="w-[95%] h-[95%] object-fill rounded-md bg-[#EE2E1E]"
               />
             </div>
           </a>

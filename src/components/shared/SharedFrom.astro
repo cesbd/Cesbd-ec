@@ -1,24 +1,60 @@
 ---
+import type { FormType } from "@/interfaces/FormType";
 import Input from "../form/Input.astro";
 import Select from "../form/Select.astro";
+import { actions } from "astro:actions";
+import Alert from "../ui/Alert.astro";
+import ScreenLoader from "./ScreenLoader.astro";
+
+interface Props {
+  formType: FormType;
+}
+
+const result = Astro.getActionResult(actions.sendEmail);
+
+const { formType } = Astro.props;
 ---
 
 <div class="container mx-auto mt-4 px-4 max-w-[50rem]">
-  <form action="" class="grid grid-cols-2 gap-8 [&>div]:col-span-2 lg:[&>div]:col-span-1" method="post">
-    
+  <div class="max-h-40 overflow-auto mb-2">
+    {
+      !!result?.error && (
+        <Alert
+          alertTitle="Error!"
+          html={result?.error.message.replaceAll(", ", "<br />")}
+          type="error"
+        />
+      )
+    }
+  </div>
+
+  <form
+    id="registrationForm"
+    method="post"
+    action={actions.sendEmail}
+    class="grid grid-cols-2 gap-8 [&>div]:col-span-2 lg:[&>div]:col-span-1"
+  >
     <Input id="cedula" name="cedula" label="Cédula" placeholder="Cédula" />
 
-    <Input id="name" name="name" label="Nombres" placeholder="Nombre" />
+    <Input id="name" name="name" label="Nombre" placeholder="Nombre" />
 
     <Input
       id="lastName"
       name="lastName"
-      label="Apellidos"
+      label="Apellido"
       placeholder="Apellido"
     />
 
     <Input
-      id="firstname"
+      id="bornDate"
+      name="bornDate"
+      label="Fecha de Nacimiento"
+      placeholder="Fecha de Nacimiento"
+      type="date"
+    />
+
+    <Input
+      id="email"
       type="email"
       name="email"
       label="Email"
@@ -33,44 +69,47 @@ import Select from "../form/Select.astro";
       placeholder="Teléfono"
     />
 
+    <Input id="city" name="city" label="Ciudad" placeholder="Ciudad" />
+
+    <Select
+      id="major"
+      name="major"
+      label="Especialidad"
+      options={[
+        { value: "Eléctrico", label: "Eléctrico" },
+        { value: "Metalmecánico", label: "Metalmecánico" },
+        { value: "Mecánico Automotriz", label: "Mecánico Automotriz" },
+        { value: "Línea Madera", label: "Línea Madera" },
+        { value: "Jardinería", label: "Jardinería" },
+        { value: "General", label: "General" },
+      ]}
+    />
+
     <Select
       id="businessType"
       name="businessType"
       label="Tipo de Negocio"
       options={[
-        { value: "1", label: "Ferretería" },
-        { value: "2", label: "Constructora - Contratista" },
-        { value: "3", label: "Industria" },
-        { value: "4", label: "Independiente" },
-        { value: "5", label: "Usuario Final" },
-        { value: "6", label: "Otros" },
+        { value: "Ferretería", label: "Ferretería" },
+        {
+          value: "Constructora - Contratista",
+          label: "Constructora - Contratista",
+        },
+        { value: "Industria", label: "Industria" },
+        { value: "Independiente", label: "Independiente" },
+        { value: "Otros", label: "Otros" },
       ]}
     />
 
-    <Input
+    <!-- <Input
       id="invoiceNumber"
       name="invoiceNumber"
       label="Número de Factura"
       type="date"
       placeholder="Número de Factura"
-    />
+    /> -->
 
-    <Input
-      id="buyAddress"
-      name="buyAddress"
-      label="Lugar de Compra"
-      placeholder="Lugar de Compra"
-      type="date"
-    />
-
-    <Input
-      id="city"
-      name="city"
-      label="Ciudad"
-      placeholder="Ciudad"
-    />
-
-    <Input
+    <!-- <Input
       id="buyingAmount"
       name="buyingAmount"
       label="Monto de Compra"
@@ -91,7 +130,11 @@ import Select from "../form/Select.astro";
       label="Imágen de la Factura"
       placeholder="Imágen de la Factura"
       type="file"
-    />
+    /> -->
+
+    <div class="h-0 w-0 overflow-hidden col-span-2">
+      <Input id="formType" name="formType" value={formType} type="hidden" />
+    </div>
 
     <button
       type="submit"
@@ -100,4 +143,28 @@ import Select from "../form/Select.astro";
       Registrarme
     </button>
   </form>
+
+  {
+    !!result?.data && (
+      <Alert
+        alertTitle="Éxito!"
+        alertMessage="Te has registrado correctamente, se te enviará un correo con los datos de la inscripción."
+      />
+    )
+  }
+
+  <!-- <TriggerToast client:load trigger={result} showToast={!!result?.error} /> -->
+
+  <ScreenLoader />
+
+  <script>
+    // document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("registrationForm") as HTMLFormElement;
+    const loader = document.getElementById("loader") as HTMLDivElement;
+
+    form.addEventListener("submit", () => {
+      loader.classList.remove("hidden");
+    });
+    // });
+  </script>
 </div>

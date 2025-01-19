@@ -26,8 +26,12 @@ export const server = {
         phone: z.string({ required_error: 'Telefono es requerido' }).min(10, { message: 'El teléfono debe tener un mínimo de 10 caracteres' }),
         major: z.string({ required_error: 'Especialidad es requerida' }).min(2, { message: 'La especialidad debe tener 2 caracteres' }).max(50, { message: 'La especialidad debe tener 50 caracteres' }),
         businessType: z.string({ required_error: 'Tipo de Negocio es requerido' }).min(2, { message: 'El tipo de negocio debe tener 2 caracteres' }).max(50, { message: 'El tipo de negocio debe tener 50 caracteres' }),
-        bornDate: z.string({ required_error: 'Fecha de nacimiento es requerida' }).min(1, { message: 'Fecha de nacimiento es requerida' })
-      }).safeParse(formValues);
+        bornDate: z.string({ required_error: 'Fecha de nacimiento es requerida' }).min(1, { message: 'Fecha de nacimiento es requerida' }),
+        city: z.string({ required_error: 'Ciudad es requerida' }).min(2, { message: 'La ciudad debe tener 2 caracteres' }).max(50, { message: 'La ciudad debe tener 50 caracteres' }),
+        formType: z.string({ required_error: 'Tipo de Formulario es requerido' }).min(1, { message: 'El tipo de formulario debe tener 1 caracteres' }).max(5, { message: 'El tipo de formulario debe tener 5 caracteres' }),
+      })
+        .transform(data => ({ ...data, formType: Number(data.formType) }))
+        .safeParse(formValues);
 
       if (!validation.success) {
         const messages = validation.error.issues.map((issue) => issue.message);
@@ -60,8 +64,12 @@ export const server = {
           born_date: new Date(validation.data.bornDate),
           major: validation.data.major,
           business_type: validation.data.businessType,
-          form_type_id: 1,
+          form_type_id: validation.data.formType,
+          city: validation.data.city,
         });
+
+        console.log('Registro exitoso');
+
       } catch (error) {
         console.log(error);
         throw new ActionError({

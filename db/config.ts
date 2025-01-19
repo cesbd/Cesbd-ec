@@ -9,6 +9,7 @@ const RegisterUser = defineTable({
     name: column.text(),
     last_name: column.text(),
     email: column.text(),
+    city: column.text(),
     phone_number: column.text(),
     born_date: column.date(),
     major: column.text(),

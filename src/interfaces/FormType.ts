@@ -1,7 +1,7 @@
-export enum FormTye {
+export enum FormType {
   'EVENTO' = 1,
-  'PREMIOS' = 2,
-  'CAPACITACIONES' = 3,
-  'DESCARGAS' = 4,
-  'CONTACTO' = 5
+  'PROMO' = 2,
+  'PREMIO' = 3,
+  'CONTACTO' = 4,
+  'DESCARGA' = 5,
 }
