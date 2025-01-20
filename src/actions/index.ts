@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import { EMAIL, RESEND_API_KEY, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_UPLOAD_PRESET } from 'astro:env/server';
 import { z } from 'astro/zod';
 import { db, RegisterUser, eq, or } from 'astro:db';
+import axios from 'axios';
 // import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
 
 const resend = new Resend(RESEND_API_KEY);
@@ -82,21 +83,30 @@ const uploadFile = async (file: any) => {
     const url = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${resource_type}/upload`;
 
     // const signature = await getSignature();
-
-    const response = await fetch(url, {
-      method: 'POST',
+    const response = await axios.post(url, JSON.stringify({
+      file: dataUri,
+      upload_preset: CLOUDINARY_UPLOAD_PRESET,
+      public_id: Date.now().toString(),
+      api_key: CLOUDINARY_API_KEY,
+    }), {
       headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        file: dataUri,
-        upload_preset: CLOUDINARY_UPLOAD_PRESET,
-        public_id: Date.now().toString(),
-        api_key: CLOUDINARY_API_KEY,
-      }),
+        'Content-Type': 'application/json'
+      }
     });
+    // const response = await fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     file: dataUri,
+    //     upload_preset: CLOUDINARY_UPLOAD_PRESET,
+    //     public_id: Date.now().toString(),
+    //     api_key: CLOUDINARY_API_KEY,
+    //   }),
+    // });
 
-    const result = await response.json();
+    const result = await response.data;
     return result;
   } catch (error) {
     console.error('Error uploading to Cloudinary:', error);
