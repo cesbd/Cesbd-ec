@@ -19,7 +19,10 @@ export default defineConfig({
   env: {
     schema: {
       RESEND_API_KEY: envField.string({ context: 'server', access: 'secret', optional: false }),
-      EMAIL: envField.string({ context: 'server', access: 'public', optional: false }),
+      EMAIL: envField.string({ context: 'server', access: 'secret', optional: false }),
+      CLOUDINARY_CLOUD_NAME: envField.string({ context: 'server', access: 'secret', optional: false }),
+      CLOUDINARY_API_KEY: envField.string({ context: 'server', access: 'secret', optional: false }),
+      CLOUDINARY_API_SECRET: envField.string({ context: 'server', access: 'secret', optional: false }),
     },
     validateSecrets: true,
   }

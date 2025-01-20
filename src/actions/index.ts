@@ -1,11 +1,29 @@
 import { ActionError, defineAction } from 'astro:actions';
 import { Resend } from 'resend';
-import { EMAIL, RESEND_API_KEY } from 'astro:env/server';
+import { EMAIL, RESEND_API_KEY, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from 'astro:env/server';
 import { z } from 'astro/zod';
-import { db, eq, or, RegisterUser } from 'astro:db';
-
+import { db, RegisterUser } from 'astro:db';
+import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
 
 const resend = new Resend(RESEND_API_KEY);
+
+const uploadFile = async (file: File): Promise<UploadApiResponse | null> => {
+  try {
+    // Convertir el archivo a base64
+    const arrayBuffer = await file.arrayBuffer();
+    const base64String = Buffer.from(arrayBuffer).toString('base64');
+    const dataUri = `data:${file.type};base64,${base64String}`;
+
+    // Subir la imagen a Cloudinary
+    const result = await cloudinary.uploader.upload(dataUri, {
+      resource_type: 'auto',
+    });
+    return result;
+  } catch (error) {
+    console.error('Error al subir la imagen:', error);
+    return null; // Retornar null si ocurre un error
+  }
+};
 
 // export const prerender = false;
 
@@ -17,6 +35,19 @@ export const server = {
     accept: 'form',
     handler: async (input) => {
       const formValues = Object.fromEntries(input.entries());
+
+      cloudinary.config({
+        cloud_name: CLOUDINARY_CLOUD_NAME,
+        api_key: CLOUDINARY_API_KEY,
+        api_secret: CLOUDINARY_API_SECRET,
+      });
+
+      let fileUrl = '';
+
+      // if (formValues.file) {
+      //   const result = await uploadFile(formValues.file as File);
+      //   console.log({ result });
+      // }
 
       const validation = z.object({
         cedula: z.string({ required_error: 'Cédula es requerida' }).min(10, { message: 'La cédula debe tener 10 caracteres' }).max(10, { message: 'La cedula debe tener 10 caracteres' }),
