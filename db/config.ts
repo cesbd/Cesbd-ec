@@ -14,6 +14,7 @@ const RegisterUser = defineTable({
     born_date: column.date(),
     major: column.text(),
     business_type: column.text(),
+    file_url: column.text({ optional: true }),
 
     form_type_id: column.number(),
 

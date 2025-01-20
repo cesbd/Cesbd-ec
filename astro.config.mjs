@@ -25,6 +25,7 @@ export default defineConfig({
       CLOUDINARY_CLOUD_NAME: envField.string({ context: 'server', access: 'secret', optional: false }),
       CLOUDINARY_API_KEY: envField.string({ context: 'server', access: 'secret', optional: false }),
       CLOUDINARY_API_SECRET: envField.string({ context: 'server', access: 'secret', optional: false }),
+      CLOUDINARY_UPLOAD_PRESET: envField.string({ context: 'server', access: 'secret', optional: false }),
     },
     validateSecrets: true,
   },

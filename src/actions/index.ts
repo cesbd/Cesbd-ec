@@ -1,8 +1,8 @@
 import { ActionError, defineAction } from 'astro:actions';
 import { Resend } from 'resend';
-import { EMAIL, RESEND_API_KEY, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from 'astro:env/server';
+import { EMAIL, RESEND_API_KEY, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_UPLOAD_PRESET } from 'astro:env/server';
 import { z } from 'astro/zod';
-import { db, RegisterUser } from 'astro:db';
+import { db, RegisterUser, eq, or } from 'astro:db';
 // import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
 
 const resend = new Resend(RESEND_API_KEY);
@@ -72,40 +72,37 @@ const resend = new Resend(RESEND_API_KEY);
 //   return signature;
 // };
 
-// const uploadFile = async (file: any) => {
-//   try {
-//     const arrayBuffer = await file.arrayBuffer();
-//     const base64String = Buffer.from(arrayBuffer).toString('base64');
-//     const dataUri = `data:${file.type};base64,${base64String}`;
+const uploadFile = async (file: any) => {
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const base64String = Buffer.from(arrayBuffer).toString('base64');
+    const dataUri = `data:${file.type};base64,${base64String}`;
 
-//     const resource_type = file.type.includes('image') ? 'image' : 'file';
-//     const url = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${resource_type}/upload`;
+    const resource_type = file.type.includes('image') ? 'image' : 'file';
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${resource_type}/upload`;
 
-//     const signature = await getSignature();
+    // const signature = await getSignature();
 
-//     const response = await fetch(url, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         file: dataUri,
-//         api_key: CLOUDINARY_API_KEY,
-//         // upload_preset: 'ml_default',
-//         // public_id: CLOUDINARY_CLOUD_NAME,
-//         signature: signature,
-//         timestamp: Math.floor(Date.now() / 1000),
-//         // upload_preset: 'your_upload_preset',
-//       }),
-//     });
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        file: dataUri,
+        upload_preset: CLOUDINARY_UPLOAD_PRESET,
+        public_id: Date.now().toString(),
+        api_key: CLOUDINARY_API_KEY,
+      }),
+    });
 
-//     const result = await response.json();
-//     return result;
-//   } catch (error) {
-//     console.error('Error uploading to Cloudinary:', error);
-//     return null;
-//   }
-// };
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error('Error uploading to Cloudinary:', error);
+    return null;
+  }
+};
 
 
 // export const prerender = false;
@@ -149,23 +146,31 @@ export const server = {
         });
       }
 
-      let fileUrl = '';
-
-      // if (file) {
-      //   const result = await uploadFile(file as File);
-      //   console.log({ result });
-      // }
 
       // save in db
-      // const result = await db.select().from(RegisterUser)
-      //   .where(or(eq(RegisterUser.email, validation.data.email), eq(RegisterUser.ci, validation.data.cedula)));
+      const result = await db.select().from(RegisterUser)
+        .where(or(eq(RegisterUser.email, validation.data.email), eq(RegisterUser.ci, validation.data.cedula)));
 
-      // if (result.length > 0) {
-      //   throw new ActionError({
-      //     message: 'El usuario ya se encuentra registrado',
-      //     code: 'BAD_REQUEST'
-      //   });
-      // }
+      if (result.length > 0) {
+        throw new ActionError({
+          message: 'El usuario ya se encuentra registrado',
+          code: 'BAD_REQUEST'
+        });
+      }
+
+      let fileUrl = '';
+
+      if (file && (file as File).size > 0) {
+        const result = await uploadFile(file as File);
+        if (!result) {
+          throw new ActionError({
+            message: 'Error al subir la imagen',
+            code: 'BAD_REQUEST'
+          });
+        };
+
+        fileUrl = result.url;
+      }
 
       try {
         // if not exists add to db
@@ -180,9 +185,9 @@ export const server = {
           business_type: validation.data.businessType,
           form_type_id: validation.data.formType,
           city: validation.data.city,
+          file_url: fileUrl ? fileUrl : null
         });
 
-        console.log('Registro exitoso');
 
       } catch (error) {
         console.log(error);
@@ -197,7 +202,7 @@ export const server = {
         from: `Registro Exitoso <${EMAIL}>`,
         to: [validation.data.email],
         subject: 'Hello world',
-        html: '<strong>It works!</strong>',
+        html: '<strong>Hola, un saludo desde Centro de Entrenamiento SBD! Este mensaje ese para darte a conocer que tu registro fue hecho de manera exitosa, por favor no respondas a este email.</strong>',
       });
 
       if (error) {
