@@ -1,7 +1,6 @@
 ---
 import '@/styles/global.css';
 import { ClientRouter } from 'astro:transitions';
-import { Toaster } from 'sonner'
 ---
 
 <!doctype html>
@@ -26,7 +25,16 @@ import { Toaster } from 'sonner'
 			<slot />
 		</main>
 
-		<!-- <ContacForm /> -->
+		<!-- whatssapp icon -->
+		<a
+			href="https://chat.whatsapp.com/C8838vbbWWlHrDbyJ7b75L"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="fixed bottom-12 right-14 z-50 flex items-center justify-center rounded-full bg-transparent p-2 shadow-md transition-all duration-300 hover:bg-green-500"
+			aria-label="WhatsApp"
+		>
+		<img src="/assets/svgs/whatsapp.svg" alt="WhatsApp" class="w-12 h-12" />
+	</a>
 	</body>
 </html>
 
