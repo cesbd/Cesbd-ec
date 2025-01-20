@@ -1,5 +1,5 @@
 ---
-import type { FormType } from "@/interfaces/FormType";
+import { FormType } from "@/interfaces/FormType";
 import Input from "../form/Input.astro";
 import Select from "../form/Select.astro";
 import { actions } from "astro:actions";
@@ -131,14 +131,18 @@ const { formType } = Astro.props;
       placeholder="Imágen de la Factura"
       type="file"
     /> -->
-
-    <Input id="formType" name="file" label="Imágen de Factura" value={formType} type="file" />
+    
+    {
+      formType === FormType.CAPACITACION &&
+      <Input id="formType" name="file" label="Imágen de Factura" value={formType} type="file" />
+    }
 
     <div class="h-0 w-0 overflow-hidden col-span-2">
       <Input id="formType" name="formType" value={formType} type="hidden" />
     </div>
 
     <button
+      id="btn-form"
       type="submit"
       class="bg-amber-300 px-12 py-2 rounded-md font-bold mx-auto text-center text-lg hover:bg-amber-400 transition-colors col-span-2"
     >
@@ -159,14 +163,35 @@ const { formType } = Astro.props;
 
   <ScreenLoader />
 
-  <script>
-    // document.addEventListener("DOMContentLoaded", () => {
+</div>
+
+<script>
+  // document.addEventListener("DOMContentLoaded", () => {
+  // const form = document.getElementById("registrationForm") as HTMLFormElement;
+  // const btnForm = document.getElementById("btn-form") as HTMLButtonElement;
+  // const loader = document.getElementById("loader") as HTMLDivElement;
+
+  // btnForm.addEventListener("click", () => {
+  //   console.log('click');
+  // });
+
+  // form.addEventListener("submit", () => {
+  //   console.log("submit");
+    
+  //   loader.classList.remove("hidden");
+  // });
+  // });
+
+  window.onload = () => {
     const form = document.getElementById("registrationForm") as HTMLFormElement;
     const loader = document.getElementById("loader") as HTMLDivElement;
 
-    form.addEventListener("submit", () => {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // Para evitar el comportamiento predeterminado
       loader.classList.remove("hidden");
+
+      // Si decides enviar el formulario manualmente, hazlo aquí
+      form.submit();
     });
-    // });
-  </script>
-</div>
+  };
+</script>
