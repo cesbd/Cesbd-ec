@@ -133,8 +133,8 @@ const { formType } = Astro.props;
     /> -->
     
     {
-      formType === FormType.CAPACITACION &&
-      <Input id="formType" name="file" label="Imágen de Factura" value={formType} type="file" />
+      // formType === FormType.CAPACITACION &&
+      <Input id="formType" name="file" label="Imágen de Factura" type="file" />
     }
 
     <div class="h-0 w-0 overflow-hidden col-span-2">
@@ -187,11 +187,11 @@ const { formType } = Astro.props;
     const loader = document.getElementById("loader") as HTMLDivElement;
 
     form.addEventListener("submit", (event) => {
-      event.preventDefault(); // Para evitar el comportamiento predeterminado
+      // event.preventDefault(); // Para evitar el comportamiento predeterminado
       loader.classList.remove("hidden");
 
       // Si decides enviar el formulario manualmente, hazlo aquí
-      form.submit();
+      // form.submit();
     });
   };
 </script>

@@ -114,7 +114,7 @@ export const server = {
     // }),
     accept: 'form',
     handler: async (input) => {
-      const { file, ...rest } = Object.fromEntries(input.entries());
+      const formValues = Object.fromEntries(input.entries());
 
       // cloudinary.config({
       //   cloud_name: CLOUDINARY_CLOUD_NAME,
@@ -135,7 +135,7 @@ export const server = {
         formType: z.string({ required_error: 'Tipo de Formulario es requerido' }).min(1, { message: 'El tipo de formulario debe tener 1 caracteres' }).max(5, { message: 'El tipo de formulario debe tener 5 caracteres' }),
       })
         .transform(data => ({ ...data, formType: Number(data.formType) }))
-        .safeParse(rest);
+        .safeParse(formValues);
 
       if (!validation.success) {
         const messages = validation.error.issues.map((issue) => issue.message);
@@ -160,8 +160,9 @@ export const server = {
 
       let fileUrl = '';
 
-      if (file && (file as File).size > 0) {
-        const result = await uploadFile(file as File);
+      if (formValues.file && (formValues.file as File).size > 0) {
+        const result = await uploadFile(formValues.file as File);
+
         if (!result) {
           throw new ActionError({
             message: 'Error al subir la imagen',
