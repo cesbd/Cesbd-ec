@@ -110,7 +110,7 @@ const uploadFile = async (file: any) => {
     return result;
   } catch (error) {
     console.error('Error uploading to Cloudinary:', error);
-    return null;
+    return { error, isInvalid: true };
   }
 };
 
@@ -173,7 +173,7 @@ export const server = {
       if (formValues.file && (formValues.file as File).size > 0) {
         const result = await uploadFile(formValues.file as File);
 
-        if (!result) {
+        if (result?.isInvalid) {
           throw new ActionError({
             message: `Error al subir la imagen ${JSON.stringify(result)}`,
             code: 'BAD_REQUEST'
