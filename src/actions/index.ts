@@ -165,7 +165,7 @@ export const server = {
 
         if (!result) {
           throw new ActionError({
-            message: 'Error al subir la imagen',
+            message: `Error al subir la imagen ${JSON.stringify(result)}`,
             code: 'BAD_REQUEST'
           });
         };
