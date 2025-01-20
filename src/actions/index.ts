@@ -1,12 +1,12 @@
 import { ActionError, defineAction } from 'astro:actions';
 import { Resend } from 'resend';
-import { EMAIL, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_UPLOAD_PRESET } from 'astro:env/server';
+import { EMAIL, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_UPLOAD_PRESET, RESEND_API_KEY } from 'astro:env/server';
 import { z } from 'astro/zod';
 import { db, RegisterUser, eq, or } from 'astro:db';
 import axios from 'axios';
 // import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
 
-// const resend = new Resend(RESEND_API_KEY);
+const resend = new Resend(RESEND_API_KEY);
 
 // const uploadFile = async (file: File): Promise<UploadApiResponse | null> => {
 //   try {
@@ -219,19 +219,19 @@ export const server = {
       }
 
       // send email
-      // const { error } = await resend.emails.send({
-      //   from: `Registro Exitoso <${EMAIL}>`,
-      //   to: [validation.data.email],
-      //   subject: 'Hello world',
-      //   html: '<strong>Hola, un saludo desde Centro de Entrenamiento SBD! Este mensaje ese para darte a conocer que tu registro fue hecho de manera exitosa, por favor no respondas a este email.</strong>',
-      // });
+      const { error } = await resend.emails.send({
+        from: `Registro Exitoso <${EMAIL}>`,
+        to: [validation.data.email],
+        subject: 'Hello world',
+        html: '<strong>Hola, un saludo desde Centro de Entrenamiento SBD! Este mensaje ese para darte a conocer que tu registro fue hecho de manera exitosa, por favor no respondas a este email.</strong>',
+      });
 
-      // if (error) {
-      //   throw new ActionError({
-      //     code: 'BAD_REQUEST',
-      //     message: error.message,
-      //   });
-      // }
+      if (error) {
+        throw new ActionError({
+          code: 'BAD_REQUEST',
+          message: error.message,
+        });
+      }
 
 
       return 'Proceso de registro exitoso!';
