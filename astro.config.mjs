@@ -32,14 +32,16 @@ export default defineConfig({
 
   vite: {
     ssr: {
-      // Solución para el error con Cloudinary
       noExternal: ['cloudinary'],
     },
-    // resolve: {
-    //   alias: {
-    //     // Si necesitas un polyfill para "crypto"
-    //     crypto: 'crypto-browserify',
-    //   },
-    // }
+    resolve: {
+      alias: {
+        // Agrega un polyfill si otras dependencias requieren objetos del entorno Node.js
+        'stream': 'stream-browserify',
+        'crypto': 'crypto-browserify',
+        'util': 'util/',
+      },
+    },
   }
+
 });
