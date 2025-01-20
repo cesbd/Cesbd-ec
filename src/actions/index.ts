@@ -3,34 +3,34 @@ import { Resend } from 'resend';
 import { EMAIL, RESEND_API_KEY, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from 'astro:env/server';
 import { z } from 'astro/zod';
 import { db, RegisterUser } from 'astro:db';
-import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
+// import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
 
 const resend = new Resend(RESEND_API_KEY);
 
-const uploadFile = async (file: File): Promise<UploadApiResponse | null> => {
-  try {
-    // Convertir el archivo a base64
-    const arrayBuffer = await file.arrayBuffer();
-    const base64String = Buffer.from(arrayBuffer).toString('base64');
-    const dataUri = `data:${file.type};base64,${base64String}`;
+// const uploadFile = async (file: File): Promise<UploadApiResponse | null> => {
+//   try {
+//     // Convertir el archivo a base64
+//     const arrayBuffer = await file.arrayBuffer();
+//     const base64String = Buffer.from(arrayBuffer).toString('base64');
+//     const dataUri = `data:${file.type};base64,${base64String}`;
 
-    // Configurar Cloudinary
-    cloudinary.config({
-      cloud_name: CLOUDINARY_CLOUD_NAME,
-      api_key: CLOUDINARY_API_KEY,
-      api_secret: CLOUDINARY_API_SECRET,
-    });
+//     // Configurar Cloudinary
+//     cloudinary.config({
+//       cloud_name: CLOUDINARY_CLOUD_NAME,
+//       api_key: CLOUDINARY_API_KEY,
+//       api_secret: CLOUDINARY_API_SECRET,
+//     });
 
-    // Subir la imagen a Cloudinary
-    const result = await cloudinary.uploader.upload(dataUri, {
-      resource_type: 'auto',
-    });
-    return result;
-  } catch (error) {
-    console.error('Error al subir la imagen:', error);
-    return null; // Retornar null si ocurre un error
-  }
-};
+//     // Subir la imagen a Cloudinary
+//     const result = await cloudinary.uploader.upload(dataUri, {
+//       resource_type: 'auto',
+//     });
+//     return result;
+//   } catch (error) {
+//     console.error('Error al subir la imagen:', error);
+//     return null; // Retornar null si ocurre un error
+//   }
+// };
 
 // const uploadFile = async (file: File): Promise<any | null> => {
 //   try {
@@ -117,20 +117,13 @@ export const server = {
     // }),
     accept: 'form',
     handler: async (input) => {
-      const formValues = Object.fromEntries(input.entries());
+      const { file, ...rest } = Object.fromEntries(input.entries());
 
       // cloudinary.config({
       //   cloud_name: CLOUDINARY_CLOUD_NAME,
       //   api_key: CLOUDINARY_API_KEY,
       //   api_secret: CLOUDINARY_API_SECRET,
       // });
-
-      let fileUrl = '';
-
-      if (formValues.file) {
-        const result = await uploadFile(formValues.file as File);
-        console.log({ result });
-      }
 
       const validation = z.object({
         cedula: z.string({ required_error: 'Cédula es requerida' }).min(10, { message: 'La cédula debe tener 10 caracteres' }).max(10, { message: 'La cedula debe tener 10 caracteres' }),
@@ -145,7 +138,7 @@ export const server = {
         formType: z.string({ required_error: 'Tipo de Formulario es requerido' }).min(1, { message: 'El tipo de formulario debe tener 1 caracteres' }).max(5, { message: 'El tipo de formulario debe tener 5 caracteres' }),
       })
         .transform(data => ({ ...data, formType: Number(data.formType) }))
-        .safeParse(formValues);
+        .safeParse(rest);
 
       if (!validation.success) {
         const messages = validation.error.issues.map((issue) => issue.message);
@@ -155,6 +148,13 @@ export const server = {
           code: 'BAD_REQUEST'
         });
       }
+
+      let fileUrl = '';
+
+      // if (file) {
+      //   const result = await uploadFile(file as File);
+      //   console.log({ result });
+      // }
 
       // save in db
       // const result = await db.select().from(RegisterUser)

@@ -8,9 +8,7 @@ import db from '@astrojs/db';
 
 // import vercel from '@astrojs/vercel';
 
-// import cloudflare from '@astrojs/cloudflare';
-
-import node from '@astrojs/node';
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,9 +16,7 @@ export default defineConfig({
     applyBaseStyles: false,
   }), db()],
 
-  adapter: node({
-    mode: 'standalone'
-  }),
+  adapter: cloudflare(),
   // output: 'server',
   env: {
     schema: {
