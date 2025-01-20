@@ -10,6 +10,7 @@
     "seed:remote": "astro db execute db/seed.ts --remote"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.2.0",
     "@astrojs/db": "^0.14.5",
     "@astrojs/react": "4.1.2",
     "@astrojs/tailwind": "5.1.4",

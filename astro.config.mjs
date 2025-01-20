@@ -6,7 +6,9 @@ import tailwind from '@astrojs/tailwind';
 
 import db from '@astrojs/db';
 
-import vercel from '@astrojs/vercel';
+// import vercel from '@astrojs/vercel';
+
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,7 +16,7 @@ export default defineConfig({
     applyBaseStyles: false,
   }), db()],
 
-  adapter: vercel(),
+  adapter: cloudflare(),
   // output: 'server',
   env: {
     schema: {
