@@ -8,7 +8,9 @@ import db from '@astrojs/db';
 
 // import vercel from '@astrojs/vercel';
 
-import cloudflare from '@astrojs/cloudflare';
+// import cloudflare from '@astrojs/cloudflare';
+
+import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,7 +18,9 @@ export default defineConfig({
     applyBaseStyles: false,
   }), db()],
 
-  adapter: cloudflare(),
+  adapter: node({
+    mode: 'standalone'
+  }),
   // output: 'server',
   env: {
     schema: {
@@ -31,16 +35,18 @@ export default defineConfig({
 
 
   vite: {
-    ssr: {
-      noExternal: ['cloudinary'],
-    },
+    // ssr: {
+    //   noExternal: ['cloudinary'],
+    // },
     resolve: {
       alias: import.meta.env.PROD ? {
         "react-dom/server": "react-dom/server.edge",
         // Agrega un polyfill si otras dependencias requieren objetos del entorno Node.js
-        'stream': 'stream-browserify',
-        'crypto': 'crypto-browserify',
-        'util': 'util/',
+        // 'stream': 'stream-browserify',
+        // 'crypto': 'crypto-browserify',
+        // 'querystring': 'querystring-es3',
+        // 'fs': 'memfs',
+        // 'util': 'util/',
       } : {},
     },
   }

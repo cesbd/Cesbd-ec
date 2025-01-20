@@ -3,28 +3,34 @@ import { Resend } from 'resend';
 import { EMAIL, RESEND_API_KEY, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from 'astro:env/server';
 import { z } from 'astro/zod';
 import { db, RegisterUser } from 'astro:db';
-// import type { UploadApiResponse } from 'cloudinary';
-// import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
+import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
 
 const resend = new Resend(RESEND_API_KEY);
 
-// const uploadFile = async (file: File): Promise<UploadApiResponse | null> => {
-//   try {
-//     // Convertir el archivo a base64
-//     const arrayBuffer = await file.arrayBuffer();
-//     const base64String = Buffer.from(arrayBuffer).toString('base64');
-//     const dataUri = `data:${file.type};base64,${base64String}`;
+const uploadFile = async (file: File): Promise<UploadApiResponse | null> => {
+  try {
+    // Convertir el archivo a base64
+    const arrayBuffer = await file.arrayBuffer();
+    const base64String = Buffer.from(arrayBuffer).toString('base64');
+    const dataUri = `data:${file.type};base64,${base64String}`;
 
-//     // Subir la imagen a Cloudinary
-//     const result = await cloudinary.uploader.upload(dataUri, {
-//       resource_type: 'auto',
-//     });
-//     return result;
-//   } catch (error) {
-//     console.error('Error al subir la imagen:', error);
-//     return null; // Retornar null si ocurre un error
-//   }
-// };
+    // Configurar Cloudinary
+    cloudinary.config({
+      cloud_name: CLOUDINARY_CLOUD_NAME,
+      api_key: CLOUDINARY_API_KEY,
+      api_secret: CLOUDINARY_API_SECRET,
+    });
+
+    // Subir la imagen a Cloudinary
+    const result = await cloudinary.uploader.upload(dataUri, {
+      resource_type: 'auto',
+    });
+    return result;
+  } catch (error) {
+    console.error('Error al subir la imagen:', error);
+    return null; // Retornar null si ocurre un error
+  }
+};
 
 // const uploadFile = async (file: File): Promise<any | null> => {
 //   try {
@@ -54,32 +60,52 @@ const resend = new Resend(RESEND_API_KEY);
 //   }
 // };
 
-const uploadFile = async (file: any) => {
-  try {
-    const arrayBuffer = await file.arrayBuffer();
-    const base64String = Buffer.from(arrayBuffer).toString('base64');
-    const dataUri = `data:${file.type};base64,${base64String}`;
+// const getSignature = async () => {
+//   const timestamp = Math.floor(Date.now() / 1000);
+//   const paramsToSign = `timestamp=${timestamp}&public_id=your_public_id`;
 
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/upload`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        file: dataUri,
-        // upload_preset: 'your_upload_preset',
-        api_key: CLOUDINARY_API_KEY,
-        timestamp: Math.floor(Date.now() / 1000),
-      }),
-    });
+//   const signature = crypto
+//     .createHmac('sha1', process.env.CLOUDINARY_API_SECRET!)
+//     .update(paramsToSign)
+//     .digest('hex');
 
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.error('Error uploading to Cloudinary:', error);
-    return null;
-  }
-};
+//   return signature;
+// };
+
+// const uploadFile = async (file: any) => {
+//   try {
+//     const arrayBuffer = await file.arrayBuffer();
+//     const base64String = Buffer.from(arrayBuffer).toString('base64');
+//     const dataUri = `data:${file.type};base64,${base64String}`;
+
+//     const resource_type = file.type.includes('image') ? 'image' : 'file';
+//     const url = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${resource_type}/upload`;
+
+//     const signature = await getSignature();
+
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         file: dataUri,
+//         api_key: CLOUDINARY_API_KEY,
+//         // upload_preset: 'ml_default',
+//         // public_id: CLOUDINARY_CLOUD_NAME,
+//         signature: signature,
+//         timestamp: Math.floor(Date.now() / 1000),
+//         // upload_preset: 'your_upload_preset',
+//       }),
+//     });
+
+//     const result = await response.json();
+//     return result;
+//   } catch (error) {
+//     console.error('Error uploading to Cloudinary:', error);
+//     return null;
+//   }
+// };
 
 
 // export const prerender = false;
@@ -101,10 +127,10 @@ export const server = {
 
       let fileUrl = '';
 
-      // if (formValues.file) {
-      //   const result = await uploadFile(formValues.file as File);
-      //   console.log({ result });
-      // }
+      if (formValues.file) {
+        const result = await uploadFile(formValues.file as File);
+        console.log({ result });
+      }
 
       const validation = z.object({
         cedula: z.string({ required_error: 'Cédula es requerida' }).min(10, { message: 'La cédula debe tener 10 caracteres' }).max(10, { message: 'La cedula debe tener 10 caracteres' }),
