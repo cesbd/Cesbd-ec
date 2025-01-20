@@ -1,12 +1,12 @@
 import { ActionError, defineAction } from 'astro:actions';
 import { Resend } from 'resend';
-import { EMAIL, RESEND_API_KEY, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_UPLOAD_PRESET } from 'astro:env/server';
+import { EMAIL, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_UPLOAD_PRESET } from 'astro:env/server';
 import { z } from 'astro/zod';
 import { db, RegisterUser, eq, or } from 'astro:db';
 import axios from 'axios';
 // import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
 
-const resend = new Resend(RESEND_API_KEY);
+// const resend = new Resend(RESEND_API_KEY);
 
 // const uploadFile = async (file: File): Promise<UploadApiResponse | null> => {
 //   try {
@@ -73,10 +73,20 @@ const resend = new Resend(RESEND_API_KEY);
 //   return signature;
 // };
 
+const arrayBufferToBase64 = (arrayBuffer: any) => {
+  const uint8Array = new Uint8Array(arrayBuffer);
+  let base64 = "";
+  uint8Array.forEach((byte) => {
+    base64 += String.fromCharCode(byte);
+  });
+  return btoa(base64);
+};
+
 const uploadFile = async (file: any) => {
   try {
     const arrayBuffer = await file.arrayBuffer();
-    const base64String = Buffer.from(arrayBuffer).toString('base64');
+    // const base64String = Buffer.from(arrayBuffer).toString('base64');
+    const base64String = arrayBufferToBase64(arrayBuffer);
     const dataUri = `data:${file.type};base64,${base64String}`;
 
     const resource_type = file.type.includes('image') ? 'image' : 'file';
@@ -108,8 +118,8 @@ const uploadFile = async (file: any) => {
 
     const result = await response.data;
     return result;
-  } catch (error) {
-    console.error('Error uploading to Cloudinary:', error);
+  } catch (error: any) {
+    console.error('Error uploading to Cloudinary:', error?.response ? error.response.data : error);
     return { error, isInvalid: true };
   }
 };
@@ -209,19 +219,19 @@ export const server = {
       }
 
       // send email
-      const { error } = await resend.emails.send({
-        from: `Registro Exitoso <${EMAIL}>`,
-        to: [validation.data.email],
-        subject: 'Hello world',
-        html: '<strong>Hola, un saludo desde Centro de Entrenamiento SBD! Este mensaje ese para darte a conocer que tu registro fue hecho de manera exitosa, por favor no respondas a este email.</strong>',
-      });
+      // const { error } = await resend.emails.send({
+      //   from: `Registro Exitoso <${EMAIL}>`,
+      //   to: [validation.data.email],
+      //   subject: 'Hello world',
+      //   html: '<strong>Hola, un saludo desde Centro de Entrenamiento SBD! Este mensaje ese para darte a conocer que tu registro fue hecho de manera exitosa, por favor no respondas a este email.</strong>',
+      // });
 
-      if (error) {
-        throw new ActionError({
-          code: 'BAD_REQUEST',
-          message: error.message,
-        });
-      }
+      // if (error) {
+      //   throw new ActionError({
+      //     code: 'BAD_REQUEST',
+      //     message: error.message,
+      //   });
+      // }
 
 
       return 'Proceso de registro exitoso!';
