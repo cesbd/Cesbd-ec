@@ -43,15 +43,15 @@ export const server = {
       }
 
       // save in db
-      const result = await db.select().from(RegisterUser)
-        .where(or(eq(RegisterUser.email, validation.data.email), eq(RegisterUser.ci, validation.data.cedula)));
+      // const result = await db.select().from(RegisterUser)
+      //   .where(or(eq(RegisterUser.email, validation.data.email), eq(RegisterUser.ci, validation.data.cedula)));
 
-      if (result.length > 0) {
-        throw new ActionError({
-          message: 'El usuario ya se encuentra registrado',
-          code: 'BAD_REQUEST'
-        });
-      }
+      // if (result.length > 0) {
+      //   throw new ActionError({
+      //     message: 'El usuario ya se encuentra registrado',
+      //     code: 'BAD_REQUEST'
+      //   });
+      // }
 
       try {
         // if not exists add to db

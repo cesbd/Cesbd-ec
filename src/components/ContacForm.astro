@@ -22,8 +22,6 @@ const { formType } = Astro.props;
     action={actions.sendEmail}
     class="grid grid-cols-2 gap-8 [&>div]:col-span-1"
   >
-    <Input id="formType" name="formType" label="Tipo de Formulario" type="hidden" value={formType} />
-
     <Input id="cedula" name="cedula" label="Cédula" placeholder="Cédula" />
 
     <Input id="name" name="name" label="Nombres" placeholder="Nombre" />
@@ -88,6 +86,8 @@ const { formType } = Astro.props;
         { value: "Otros", label: "Otros" },
       ]}
     />
+
+    <Input id="formType" name="formType" label="" type="hidden" value={formType} />
 
     <button
       type="submit"

@@ -20,12 +20,12 @@ export default async function seed() {
 			staff: 'Promo',
 		},
 		{
-			event_name: 'Premio',
-			event_type: 'Premio',
-			event_location: 'Premio',
+			event_name: 'Capacitación',
+			event_type: 'Capacitación',
+			event_location: 'Capacitación',
 			event_date: new Date(),
-			brand: 'Premio',
-			staff: 'Premio',
+			brand: 'Capacitación',
+			staff: 'Capacitación',
 		},
 		{
 			event_name: 'Contacto',

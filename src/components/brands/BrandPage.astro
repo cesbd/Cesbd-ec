@@ -2,6 +2,7 @@
 import Navbar from "@/components/ui/Navbar.astro";
 import Layout from "../../layouts/Layout.astro";
 import { CustomBreadcrumb } from "../shared/CustomBreadcrumb";
+import { BrandGalery } from "./BrandGalery";
 
 interface Props {
   title: string;
@@ -14,6 +15,7 @@ interface Props {
     href: string;
     current?: boolean;
   }[];
+  galeryImages: string[];
 }
 
 interface Card {
@@ -26,7 +28,7 @@ interface Timeline {
   description: string;
 }
 
-const { title, subtitle, introduction, cards, timeline, path } = Astro.props;
+const { title, subtitle, introduction, cards, timeline, path, galeryImages } = Astro.props;
 ---
 
 <Layout>
@@ -86,6 +88,12 @@ const { title, subtitle, introduction, cards, timeline, path } = Astro.props;
         }
       </div>
     </section>
+
+    <!-- GALERIA -->
+    <BrandGalery 
+      images={galeryImages}
+      client:load 
+    />
 
     <!-- HISTORIA -->
     <section class="mt-12">
