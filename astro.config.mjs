@@ -35,12 +35,13 @@ export default defineConfig({
       noExternal: ['cloudinary'],
     },
     resolve: {
-      alias: {
+      alias: import.meta.env.PROD ? {
+        "react-dom/server": "react-dom/server.edge",
         // Agrega un polyfill si otras dependencias requieren objetos del entorno Node.js
         'stream': 'stream-browserify',
         'crypto': 'crypto-browserify',
         'util': 'util/',
-      },
+      } : {},
     },
   }
 
