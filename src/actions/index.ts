@@ -3,27 +3,84 @@ import { Resend } from 'resend';
 import { EMAIL, RESEND_API_KEY, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from 'astro:env/server';
 import { z } from 'astro/zod';
 import { db, RegisterUser } from 'astro:db';
-import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
+// import type { UploadApiResponse } from 'cloudinary';
+// import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
 
 const resend = new Resend(RESEND_API_KEY);
 
-const uploadFile = async (file: File): Promise<UploadApiResponse | null> => {
+// const uploadFile = async (file: File): Promise<UploadApiResponse | null> => {
+//   try {
+//     // Convertir el archivo a base64
+//     const arrayBuffer = await file.arrayBuffer();
+//     const base64String = Buffer.from(arrayBuffer).toString('base64');
+//     const dataUri = `data:${file.type};base64,${base64String}`;
+
+//     // Subir la imagen a Cloudinary
+//     const result = await cloudinary.uploader.upload(dataUri, {
+//       resource_type: 'auto',
+//     });
+//     return result;
+//   } catch (error) {
+//     console.error('Error al subir la imagen:', error);
+//     return null; // Retornar null si ocurre un error
+//   }
+// };
+
+// const uploadFile = async (file: File): Promise<any | null> => {
+//   try {
+//     // Importar cloudinary dinámicamente para evitar problemas de empaquetado
+//     const { v2: cloudinary } = await import('cloudinary');
+
+//     // Configurar Cloudinary
+//     cloudinary.config({
+//       cloud_name: CLOUDINARY_CLOUD_NAME,
+//       api_key: CLOUDINARY_API_KEY,
+//       api_secret: CLOUDINARY_API_SECRET,
+//     });
+
+//     // Convertir el archivo a base64
+//     const arrayBuffer = await file.arrayBuffer();
+//     const base64String = Buffer.from(arrayBuffer).toString('base64');
+//     const dataUri = `data:${file.type};base64,${base64String}`;
+
+//     // Subir la imagen a Cloudinary
+//     const result = await cloudinary.uploader.upload(dataUri, {
+//       resource_type: 'auto',
+//     });
+//     return result;
+//   } catch (error) {
+//     console.error('Error al subir la imagen:', error);
+//     return null; // Retornar null si ocurre un error
+//   }
+// };
+
+const uploadFile = async (file: any) => {
   try {
-    // Convertir el archivo a base64
     const arrayBuffer = await file.arrayBuffer();
     const base64String = Buffer.from(arrayBuffer).toString('base64');
     const dataUri = `data:${file.type};base64,${base64String}`;
 
-    // Subir la imagen a Cloudinary
-    const result = await cloudinary.uploader.upload(dataUri, {
-      resource_type: 'auto',
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/upload`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        file: dataUri,
+        // upload_preset: 'your_upload_preset',
+        api_key: CLOUDINARY_API_KEY,
+        timestamp: Math.floor(Date.now() / 1000),
+      }),
     });
+
+    const result = await response.json();
     return result;
   } catch (error) {
-    console.error('Error al subir la imagen:', error);
-    return null; // Retornar null si ocurre un error
+    console.error('Error uploading to Cloudinary:', error);
+    return null;
   }
 };
+
 
 // export const prerender = false;
 
@@ -36,11 +93,11 @@ export const server = {
     handler: async (input) => {
       const formValues = Object.fromEntries(input.entries());
 
-      cloudinary.config({
-        cloud_name: CLOUDINARY_CLOUD_NAME,
-        api_key: CLOUDINARY_API_KEY,
-        api_secret: CLOUDINARY_API_SECRET,
-      });
+      // cloudinary.config({
+      //   cloud_name: CLOUDINARY_CLOUD_NAME,
+      //   api_key: CLOUDINARY_API_KEY,
+      //   api_secret: CLOUDINARY_API_SECRET,
+      // });
 
       let fileUrl = '';
 

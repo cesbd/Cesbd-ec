@@ -27,5 +27,19 @@ export default defineConfig({
       CLOUDINARY_API_SECRET: envField.string({ context: 'server', access: 'secret', optional: false }),
     },
     validateSecrets: true,
+  },
+
+
+  vite: {
+    ssr: {
+      // Solución para el error con Cloudinary
+      noExternal: ['cloudinary'],
+    },
+    // resolve: {
+    //   alias: {
+    //     // Si necesitas un polyfill para "crypto"
+    //     crypto: 'crypto-browserify',
+    //   },
+    // }
   }
 });
