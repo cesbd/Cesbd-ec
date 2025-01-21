@@ -1,8 +1,8 @@
 ---
-import SharedFrom from "@/components/shared/SharedFrom.astro";
 import Navbar from "@/components/ui/Navbar.astro";
 import { FormType } from "@/interfaces/FormType";
 import Layout from "@/layouts/Layout.astro";
+import SharedForm from "./SharedForm.astro";
 
 
 const images: Record<keyof typeof FormType, string> = {
@@ -35,7 +35,7 @@ const image = images[pageType];
 
     <div class="max-w-[50rem] mx-auto px-4 py-16 text-gray-800 shadow-md rounded-lg mt-4">
       <h1 class="text-3xl font-bold text-center mb-10 text-amber-400">Formulario de Registro</h1>
-      <SharedFrom 
+      <SharedForm
         formType={FormType[pageType]}
       />
     </div>

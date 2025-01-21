@@ -3,6 +3,7 @@ import Navbar from '@/components/ui/Navbar.astro';
 import ContacForm from '../components/ContacForm.astro';
 import Layout from '../layouts/Layout.astro';
 import { FormType } from '@/interfaces/FormType';
+import SharedForm from '../components/shared/SharedForm.astro';
 
 // esto se agrega en pages/tuppagina.astro no en los componentes
 export const prerender = false;
@@ -17,7 +18,7 @@ export const prerender = false;
     <div class="max-w-[35rem] mr-auto ml-[80px] mt-14 relative"> 
       <div class="z-10 relative bg-white p-4 rounded-md py-8">
         <h1 class="text-3xl font-bold text-center text-amber-400">Formulario de Inscripción</h1>
-        <ContacForm formType={FormType.CONTACTO} />
+        <SharedForm formType={FormType.CONTACTO} />
       </div>
 
       <div class="bg-amber-500 absolute top-0 left-0 w-full h-full blur-3xl opacity-55"></div>

@@ -222,7 +222,7 @@ export const server = {
       const { error } = await resend.emails.send({
         from: `Registro Exitoso <${EMAIL}>`,
         to: [validation.data.email],
-        subject: 'Hello world',
+        subject: 'Centro de Entrenamiento SBD',
         html: '<strong>Hola, un saludo desde Centro de Entrenamiento SBD! Este mensaje ese para darte a conocer que tu registro fue hecho de manera exitosa, por favor no respondas a este email.</strong>',
       });
 
