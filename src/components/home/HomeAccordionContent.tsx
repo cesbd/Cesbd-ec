@@ -60,7 +60,7 @@ export function HomeAccordionContent() {
         </AccordionContent>
       </AccordionItem>
 
-      <AccordionItem value="item-5" className="rounded-md shadow-sm border-amber-400 border-l-4 mb-6">
+      {/* <AccordionItem value="item-5" className="rounded-md shadow-sm border-amber-400 border-l-4 mb-6">
         <AccordionTrigger className="font-semibold text-xl hover:no-underline hover:bg-amber-100 hover:transition-all duration-300 px-4">Premios y Regalos</AccordionTrigger>
         <AccordionContent>
           <p className="text-lg px-4">
@@ -68,7 +68,7 @@ export function HomeAccordionContent() {
             increíbles. Es nuestra forma de agradecer tu preferencia y lealtad.
           </p>
         </AccordionContent>
-      </AccordionItem>
+      </AccordionItem> */}
     </Accordion>
   )
 }

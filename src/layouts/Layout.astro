@@ -1,6 +1,10 @@
 ---
-import '@/styles/global.css';
-import { ClientRouter } from 'astro:transitions';
+import "@/styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import { Facebook } from "lucide-react";
+
+const date = new Date();
+const year = date.getFullYear();
 ---
 
 <!doctype html>
@@ -30,11 +34,77 @@ import { ClientRouter } from 'astro:transitions';
 			href="https://chat.whatsapp.com/C8838vbbWWlHrDbyJ7b75L"
 			target="_blank"
 			rel="noopener noreferrer"
-			class="fixed bottom-12 right-14 z-50 flex items-center justify-center rounded-full bg-transparent p-2 shadow-md transition-all duration-300 hover:bg-green-500"
+			class="fixed bottom-24 right-14 z-50 flex items-center justify-center rounded-full bg-transparent p-2 shadow-md transition-all duration-300 hover:bg-green-500"
 			aria-label="WhatsApp"
 		>
-		<img src="/assets/svgs/whatsapp.svg" alt="WhatsApp" class="w-12 h-12" />
-	</a>
+			<img src="/assets/svgs/whatsapp.svg" alt="WhatsApp" class="w-12 h-12" />
+		</a>
+
+		<footer
+			class="flex flex-col items-center justify-center bg-amber-300 p-4 text-center text-sm text-gray-800 shadow-md"
+		>
+			<div class="flex justify-between w-full">
+				<a href="#" class="hover:underline">
+					<p class="font-semibold text-gray-500">Ver Política de Privacidad</p>
+				</a>
+
+				<div class="flex-1">
+					<p class="text-gray-500">
+						© {year} Centro de Entrenamiento SBD. Todos los derechos reservados.
+					</p>
+				</div>
+
+				<div class="ml-auto flex gap-2">
+					<a href="https://www.facebook.com/centroentrenamientosbd">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							x="0px"
+							y="0px"
+							width="100"
+							height="100"
+							viewBox="0 0 64 64"
+							class="w-8 h-8"
+						>
+							<path
+								d="M48,7H16c-4.418,0-8,3.582-8,8v32c0,4.418,3.582,8,8,8h17V38h-6v-7h6v-5c0-7,4-11,10-11c3.133,0,5,1,5,1v6h-4 c-2.86,0-4,2.093-4,4v5h7l-1,7h-6v17h8c4.418,0,8-3.582,8-8V15C56,10.582,52.418,7,48,7z"
+							></path>
+						</svg>
+					</a>
+
+					<a href="https://www.instagram.com/centroentrenamientosbd/">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							x="0px"
+							y="0px"
+							width="100"
+							height="100"
+							viewBox="0 0 64 64"
+							class="w-8 h-8"
+						>
+							<path
+								d="M 21.580078 7 C 13.541078 7 7 13.544938 7 21.585938 L 7 42.417969 C 7 50.457969 13.544938 57 21.585938 57 L 42.417969 57 C 50.457969 57 57 50.455062 57 42.414062 L 57 21.580078 C 57 13.541078 50.455062 7 42.414062 7 L 21.580078 7 z M 47 15 C 48.104 15 49 15.896 49 17 C 49 18.104 48.104 19 47 19 C 45.896 19 45 18.104 45 17 C 45 15.896 45.896 15 47 15 z M 32 19 C 39.17 19 45 24.83 45 32 C 45 39.17 39.169 45 32 45 C 24.83 45 19 39.169 19 32 C 19 24.831 24.83 19 32 19 z M 32 23 C 27.029 23 23 27.029 23 32 C 23 36.971 27.029 41 32 41 C 36.971 41 41 36.971 41 32 C 41 27.029 36.971 23 32 23 z"
+							></path>
+						</svg>
+					</a>
+
+					<a href="https://www.tiktok.com/@centrodeentrenamientosbd">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							x="0px"
+							y="0px"
+							width="100"
+							height="100"
+							viewBox="0 0 64 64"
+							class="w-8 h-8"
+						>
+							<path
+								d="M48,8H16c-4.418,0-8,3.582-8,8v32c0,4.418,3.582,8,8,8h32c4.418,0,8-3.582,8-8V16C56,11.582,52.418,8,48,8z M50,27 c-3.964,0-6.885-1.09-9-2.695V38.5C41,44.841,35.841,50,29.5,50S18,44.841,18,38.5S23.159,27,29.5,27h2v5h-2 c-3.584,0-6.5,2.916-6.5,6.5s2.916,6.5,6.5,6.5s6.5-2.916,6.5-6.5V14h5c0.018,1.323,0.533,8,9,8V27z"
+							></path>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>
 

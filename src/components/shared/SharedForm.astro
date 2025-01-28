@@ -34,8 +34,6 @@ const { formType } = Astro.props;
     action={actions.sendEmail}
     class="grid grid-cols-2 gap-8 [&>div]:col-span-2 lg:[&>div]:col-span-1"
   >
-    <Input id="cedula" name="cedula" label="Cédula" placeholder="Cédula" />
-
     <Input id="name" name="name" label="Nombre" placeholder="Nombre" />
 
     <Input
@@ -45,6 +43,8 @@ const { formType } = Astro.props;
       placeholder="Apellido"
     />
 
+    <Input id="cedula" name="cedula" label="Cédula" placeholder="Cédula" />
+    
     <Input
       id="bornDate"
       name="bornDate"

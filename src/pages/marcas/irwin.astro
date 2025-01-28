@@ -1,10 +1,10 @@
 ---
 import BrandPage from "@/components/brands/BrandPage.astro";
 
-const dewalt = {
-  title: "Irwin",
+const IRWIN = {
+  title: "IRWIN",
   subtitle: "Innovación para la Precisión",
-  introduction: `Irwin se destaca como líder en herramientas de sujeción y corte, diseñadas para profesionales que
+  introduction: `IRWIN se destaca como líder en herramientas de sujeción y corte, diseñadas para profesionales que
   requieren precisión y confiabilidad. Su enfoque en el desarrollo de productos garantiza superar los
   estándares de calidad.`,
   cards: [
@@ -32,7 +32,7 @@ const dewalt = {
   timeline: [
     {
       title: "1885",
-      description: `Charles Irwin patenta la broca "Auger Bit", sentando las bases de la marca.`,
+      description: `Charles IRWIN patenta la broca "Auger Bit", sentando las bases de la marca.`,
     },
     {
       title: "1924",
@@ -47,7 +47,7 @@ const dewalt = {
     {
       title: "2002",
       description:
-        "Relanzamiento global como Irwin Industrial Tools, consolidando su identidad.",
+        "Relanzamiento global como IRWIN Industrial Tools, consolidando su identidad.",
     },
     {
       title: "2016",
@@ -66,8 +66,8 @@ const dewalt = {
       href: "/",
     },
     {
-      name: "Irwin",
-      href: "/marcas/irwin",
+      name: "IRWIN",
+      href: "/marcas/IRWIN",
       current: true,
     },
   ],
@@ -81,11 +81,11 @@ const dewalt = {
 ---
 
 <BrandPage
-  title={dewalt.title}
-  subtitle={dewalt.subtitle}
-  introduction={dewalt.introduction}
-  cards={dewalt.cards}
-  timeline={dewalt.timeline}
-  path={dewalt.path}
-  galeryImages={dewalt.galeryImages}
+  title={IRWIN.title}
+  subtitle={IRWIN.subtitle}
+  introduction={IRWIN.introduction}
+  cards={IRWIN.cards}
+  timeline={IRWIN.timeline}
+  path={IRWIN.path}
+  galeryImages={IRWIN.galeryImages}
 />
