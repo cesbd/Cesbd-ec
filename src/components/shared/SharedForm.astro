@@ -9,12 +9,16 @@ import ScreenLoader from "./ScreenLoader.astro";
 interface Props {
   formType: FormType;
 }
+const { formType } = Astro.props;
 
+// action to get the list of events
+// const evetntList = Astro.getActionResult();
+const { data, error } = await Astro.callAction(actions.getEvents, {});
+
+console.log({ data });
 
 
 const result = Astro.getActionResult(actions.sendEmail);
-
-const { formType } = Astro.props;
 ---
 
 <div class="container mx-auto mt-4 px-4 max-w-[50rem]">

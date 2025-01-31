@@ -236,6 +236,14 @@ export const server = {
 
       return 'Proceso de registro exitoso!';
     }
-  })
+  }),
+
+
+  getEvents: defineAction({
+    handler: async () => {
+      // const result = await db.select().from(Event).orderBy(asc(Event.id));
+      return 'Eventos';
+    }
+  }),
 
 };
