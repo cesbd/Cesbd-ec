@@ -2,9 +2,8 @@ import { ActionError, defineAction } from 'astro:actions';
 import { Resend } from 'resend';
 import { EMAIL, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_UPLOAD_PRESET, RESEND_API_KEY } from 'astro:env/server';
 import { z } from 'astro/zod';
-import { db, RegisterUser, eq, or } from 'astro:db';
+import { db, RegisterUser, eq, or, FormType, asc } from 'astro:db';
 import axios from 'axios';
-// import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
 
 const resend = new Resend(RESEND_API_KEY);
 
@@ -166,7 +165,6 @@ export const server = {
         });
       }
 
-
       // save in db
       const result = await db.select().from(RegisterUser)
         .where(or(eq(RegisterUser.email, validation.data.email), eq(RegisterUser.ci, validation.data.cedula)));
@@ -241,8 +239,16 @@ export const server = {
 
   getEvents: defineAction({
     handler: async () => {
-      // const result = await db.select().from(Event).orderBy(asc(Event.id));
-      return 'Eventos';
+      try {
+        const result = await db.select().from(FormType);
+        return result.map(item => item);
+      } catch (error) {
+        console.log(error);
+        throw new ActionError({
+          message: 'Error al obtener los eventos',
+          code: 'BAD_REQUEST'
+        });
+      }
     }
   }),
 

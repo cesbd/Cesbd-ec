@@ -1,8 +1,8 @@
-import { db, FormTye } from 'astro:db';
+import { db, FormType } from 'astro:db';
 
 // https://astro.build/db/seed
 export default async function seed() {
-	await db.insert(FormTye).values([
+	await db.insert(FormType).values([
 		{
 			event_name: 'Evento',
 			event_type: 'Evento',

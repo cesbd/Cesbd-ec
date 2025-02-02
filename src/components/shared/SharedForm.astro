@@ -13,10 +13,7 @@ const { formType } = Astro.props;
 
 // action to get the list of events
 // const evetntList = Astro.getActionResult();
-const { data, error } = await Astro.callAction(actions.getEvents, {});
-
-console.log({ data });
-
+const { data } = await Astro.callAction(actions.getEvents, {});
 
 const result = Astro.getActionResult(actions.sendEmail);
 ---
@@ -40,6 +37,16 @@ const result = Astro.getActionResult(actions.sendEmail);
     action={actions.sendEmail}
     class="grid grid-cols-2 gap-8 [&>div]:col-span-2 lg:[&>div]:col-span-1"
   >
+    <Select
+      id="formType"
+      name="formType"
+      label="Tipo de Formulario"
+      options={(data || []).map((item) => ({
+        value: item.event_type.toString(),
+        label: item.event_type,
+      }))}
+    />
+
     <Input id="name" name="name" label="Nombre" placeholder="Nombre" />
 
     <Input
@@ -50,7 +57,7 @@ const result = Astro.getActionResult(actions.sendEmail);
     />
 
     <Input id="cedula" name="cedula" label="Cédula" placeholder="Cédula" />
-    
+
     <Input
       id="bornDate"
       name="bornDate"
@@ -137,15 +144,21 @@ const result = Astro.getActionResult(actions.sendEmail);
       placeholder="Imágen de la Factura"
       type="file"
     /> -->
-    
+
     {
-      formType === FormType.CAPACITACION &&
-      <Input id="formType" name="file" label="Imágen de Factura" type="file" />
+      formType === FormType.CAPACITACION && (
+        <Input
+          id="formType"
+          name="file"
+          label="Imágen de Factura"
+          type="file"
+        />
+      )
     }
 
-    <div class="h-0 w-0 overflow-hidden col-span-2">
+    <!-- <div class="h-0 w-0 overflow-hidden col-span-2">
       <Input id="formType" name="formType" value={formType} type="hidden" />
-    </div>
+    </div> -->
 
     <button
       id="btn-form"
@@ -168,7 +181,6 @@ const result = Astro.getActionResult(actions.sendEmail);
   <!-- <TriggerToast client:load trigger={result} showToast={!!result?.error} /> -->
 
   <ScreenLoader />
-
 </div>
 
 <script>
@@ -183,7 +195,7 @@ const result = Astro.getActionResult(actions.sendEmail);
 
   // form.addEventListener("submit", () => {
   //   console.log("submit");
-    
+
   //   loader.classList.remove("hidden");
   // });
   // });

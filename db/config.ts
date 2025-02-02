@@ -23,7 +23,7 @@ const RegisterUser = defineTable({
   foreignKeys: [
     {
       columns: ['form_type_id'],
-      references: () => [FormTye.columns.id],
+      references: () => [FormType.columns.id],
     }
   ],
   indexes: [
@@ -35,7 +35,7 @@ const RegisterUser = defineTable({
   ]
 });
 
-const FormTye = defineTable({
+const FormType = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
     event_name: column.text(),
@@ -49,5 +49,5 @@ const FormTye = defineTable({
 
 // https://astro.build/db/config
 export default defineDb({
-  tables: { RegisterUser, FormTye }
+  tables: { RegisterUser, FormType }
 });
