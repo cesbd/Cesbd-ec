@@ -13,7 +13,7 @@ const { formType } = Astro.props;
 
 // action to get the list of events
 // const evetntList = Astro.getActionResult();
-const { data } = await Astro.callAction(actions.getEvents, {});
+const { data } = await Astro.callAction(actions.getEvents, formType);
 
 const result = Astro.getActionResult(actions.sendEmail);
 ---
@@ -41,10 +41,7 @@ const result = Astro.getActionResult(actions.sendEmail);
       id="formType"
       name="formType"
       label="Tipo de Formulario"
-      options={(data || []).map((item) => ({
-        value: item.event_type.toString(),
-        label: item.event_type,
-      }))}
+      options={(data || []).map(item => ({ value: item, label: item }))}
     />
 
     <Input id="name" name="name" label="Nombre" placeholder="Nombre" />

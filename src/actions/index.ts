@@ -153,8 +153,8 @@ export const server = {
         city: z.string({ required_error: 'Ciudad es requerida' }).min(2, { message: 'La ciudad debe tener 2 caracteres' }).max(50, { message: 'La ciudad debe tener 50 caracteres' }),
         formType: z.string({ required_error: 'Tipo de Formulario es requerido' }).min(1, { message: 'El tipo de formulario debe tener 1 caracteres' }).max(5, { message: 'El tipo de formulario debe tener 5 caracteres' }),
       })
-        .transform(data => ({ ...data, formType: Number(data.formType) }))
         .safeParse(formValues);
+      // .transform(data => ({ ...data, formType: Number(data.formType) }))
 
       if (!validation.success) {
         const messages = validation.error.issues.map((issue) => issue.message);
@@ -202,7 +202,9 @@ export const server = {
           born_date: new Date(validation.data.bornDate),
           major: validation.data.major,
           business_type: validation.data.businessType,
-          form_type_id: validation.data.formType,
+
+          // form_type_id: validation.data.formType,
+          form_type: validation.data.formType,
           city: validation.data.city,
           file_url: fileUrl ? fileUrl : null
         });
@@ -230,18 +232,27 @@ export const server = {
           message: error.message,
         });
       }
-
-
       return 'Proceso de registro exitoso!';
     }
   }),
 
 
   getEvents: defineAction({
-    handler: async () => {
+    handler: async (formId: number) => {
       try {
-        const result = await db.select().from(FormType);
-        return result.map(item => item);
+        const result = await db.select().from(FormType).where(eq(FormType.id, formId));
+
+        if (result.length === 0) {
+          throw new ActionError({
+            message: 'Error al obtener los eventos',
+            code: 'BAD_REQUEST'
+          });
+        }
+
+        const data = result[0];
+        const eventTypes = data.event_types.split(',').map(item => item.trim());
+
+        return eventTypes;
       } catch (error) {
         console.log(error);
         throw new ActionError({

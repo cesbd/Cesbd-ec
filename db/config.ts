@@ -16,16 +16,17 @@ const RegisterUser = defineTable({
     business_type: column.text(),
     file_url: column.text({ optional: true }),
 
-    form_type_id: column.number(),
+    // form_type_id: column.number(),
+    form_type: column.text(),
 
     register_date: column.date({ default: NOW }),
   },
-  foreignKeys: [
-    {
-      columns: ['form_type_id'],
-      references: () => [FormType.columns.id],
-    }
-  ],
+  // foreignKeys: [
+  //   {
+  //     columns: ['form_type_id'],
+  //     references: () => [FormType.columns.id],
+  //   }
+  // ],
   indexes: [
     {
       unique: true,
@@ -39,11 +40,11 @@ const FormType = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
     event_name: column.text(),
-    event_type: column.text(),
-    event_location: column.text(),
+    event_types: column.text(),
+    // event_location: column.text(),
     event_date: column.date(),
-    brand: column.text(),
-    staff: column.text(),
+    // brand: column.text(),
+    // staff: column.text(),
   }
 });
 
